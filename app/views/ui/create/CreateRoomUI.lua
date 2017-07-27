@@ -132,7 +132,7 @@ end
 
 function CreateRoomUI:onCreateHandler(event)
     if tonumber(UserData.userInfo.surplusGameCard) < dataMgr:getUseNum() then
-        UIMgr:showTips("房卡不足，创建失败\n\n购买房卡：kuailaiyouxi【微信公众号】")
+        UIMgr:showTips("房卡不足，创建失败\n\n购买房卡：memeyouxi【微信公众号】")
         return
     end
     UIMgr:showLoadingDialog("创建房间中...")

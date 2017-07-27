@@ -69,7 +69,7 @@ function SummaryResultUI:captureScreenCallback(isSuccess,imagePath)
         --成功
         print("成功....",consts.App.APP_FILE_PATH)
         print("成功",imagePath)
-        local args = {title="快来麻将",desc="快来麻将，大家一起来玩耍吧！",webUrl="",imageUrl=imagePath}
+        local args = {title="么么麻将",desc="么么湖南麻将，大家一起来玩耍吧！",webUrl="",imageUrl=imagePath}
         LuaCallPlatformFun.share(args)
     else
         --失败

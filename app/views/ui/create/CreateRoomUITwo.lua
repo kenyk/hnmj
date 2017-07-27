@@ -342,7 +342,7 @@ function CreateRoomUITwo:onCreateHandler(event)
 
     if not self.m_clubData and tonumber(UserData.userInfo.surplusGameCard) < dataMgr:getUseNum() then
         if(not Is_App_Store)then
-            UIMgr:showTips("房卡不足，创建失败\n\n购买房卡：klhunan88【微信公众号】")
+            UIMgr:showTips("房卡不足，创建失败\n\n购买房卡：memeyouxi【微信公众号】")
         else
             UIMgr:showTips("房卡不足，创建失败")
         end

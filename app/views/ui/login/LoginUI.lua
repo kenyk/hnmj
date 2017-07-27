@@ -99,8 +99,11 @@ function LoginUI:onNetChange()
      elseif CC_PACKET_VERSION == 3 then
          --发布包使用
          if consts.App.APP_PLATFORM ~= cc.PLATFORM_OS_WINDOWS then
-             consts.HttpHost = "api.kuailai88.com"
-             consts.GameHttpHost = "dlklmj3.kuailai88.com:8001"
+
+             --consts.HttpHost = "api.kuailai88.com"
+             --consts.GameHttpHost = "dlklmj3.kuailai88.com:8001"
+             consts.HttpHost = "119.29.64.46:40001"
+             consts.GameHttpHost = "119.29.64.46:8001"
              consts.BIHttpHost = consts.BIHttpHost_wan
          end
      end

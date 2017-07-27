@@ -113,13 +113,13 @@ consts.DefauleGameType = consts.GameType.zhuanzhuan
  -- consts.HttpHost = "10.17.174.171:8192"
  -- consts.GameHttpHost = "10.17.174.116:8001"
 
--- consts.BIHttpHost_lan = "10.17.174.171:8081"
--- consts.BIHttpHost_wan = "bidata.kuailai88.com"
+--consts.BIHttpHost_lan = "10.17.174.171:8081"
 consts.BIHttpHost_lan = "121.201.48.188:8192"
 consts.BIHttpHost_wan = "bidata.kuailai88.com"
 
 ---外网
 consts.HttpHost = "121.201.48.188:8192"
+--consts.HttpHost = "192.168.1.103:20002"
 consts.GameHttpHost = "121.201.48.188:8001"
 consts.BIHttpHost = consts.BIHttpHost_lan
 
@@ -244,7 +244,7 @@ consts.GCloudVoice = {
    GCLOUD_GAME_KEY = "4538d544bfc6f869357aa88d23c3d9da"
 }
 
-consts.wechatAppId =  "wxb0c1087c2a499493"
+consts.wechatAppId =  "wxf0862d65306b025a"
 consts.roomCreateMsg = {}
 -- consts.roomCreateMsg.tab_1 = 
 -- {

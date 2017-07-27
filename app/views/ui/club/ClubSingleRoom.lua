@@ -102,14 +102,14 @@ function ClubSingleRoom:onInvite()
     print(shareTitle)
     print(sharedesc)
 
-    local weburl = "http://a.mlinks.cc/AaNG?".."roomId="..self.data.room_id
+    local weburl = "http://acz5fi.mlinks.cc/AaNG?".."roomId="..self.data.room_id
     local img = ""
-    if UserData.userInfo and UserData.userInfo.shareList and UserData.userInfo.shareList.roomShare then
-        img = UserData.userInfo.shareList.roomShare.img
-        if UserData.userInfo.shareList.roomShare.link and #UserData.userInfo.shareList.roomShare.link>1 then
-            weburl = UserData.userInfo.shareList.roomShare.link.."roomId="..self.data.room_id
-        end
-    end
+    -- if UserData.userInfo and UserData.userInfo.shareList and UserData.userInfo.shareList.roomShare then
+    --     img = UserData.userInfo.shareList.roomShare.img
+    --     if UserData.userInfo.shareList.roomShare.link and #UserData.userInfo.shareList.roomShare.link>1 then
+    --         weburl = UserData.userInfo.shareList.roomShare.link.."roomId="..self.data.room_id
+    --     end
+    -- end
     local args = {title=shareTitle,desc=sharedesc,webUrl=weburl,imageUrl=img}
 	LuaCallPlatformFun.share(args)
 end
