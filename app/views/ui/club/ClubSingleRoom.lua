@@ -102,7 +102,7 @@ function ClubSingleRoom:onInvite()
     print(shareTitle)
     print(sharedesc)
 
-    local weburl = "http://acz5fi.mlinks.cc/AaNG?".."roomId="..self.data.room_id
+    local weburl = "https://acz5fi.mlinks.cc/AcqJ?".."roomId="..self.data.room_id
     local img = ""
     -- if UserData.userInfo and UserData.userInfo.shareList and UserData.userInfo.shareList.roomShare then
     --     img = UserData.userInfo.shareList.roomShare.img

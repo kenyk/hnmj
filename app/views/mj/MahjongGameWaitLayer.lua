@@ -199,7 +199,7 @@ function MahjongGameWaitLayer:onBtnInviteFriendCLick()
     end
     print(sharedesc)
 
-    local weburl = "http://acz5fi.mlinks.cc/AaNG?".."roomId="..UserData.roomId
+    local weburl = "https://acz5fi.mlinks.cc/AcqJ?".."roomId="..UserData.roomId
     local img = ""
     -- if UserData.userInfo and UserData.userInfo.shareList and UserData.userInfo.shareList.roomShare then
     --     img = UserData.userInfo.shareList.roomShare.img
