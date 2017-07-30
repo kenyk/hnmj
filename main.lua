@@ -31,7 +31,7 @@ local function sendRemoteLog( msg )
     local function callback(entity,response,statusCode)
         print("send RemoteLog callback !!",statusCode)
     end
-    HttpClient:asyncGet(consts.HttpUrl.getCodeCrashesResult, params,callback)
+    --HttpClient:asyncGet(consts.HttpUrl.getCodeCrashesResult, params,callback)
 
 end
 

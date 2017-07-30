@@ -6,15 +6,15 @@ ClubRoomUI.RESOURCE_FILENAME = "uiClub/UI_Room_Club.csb"
 local KEY_CLUB_ID = "KEY_CLUB_ID"
 
 function ClubRoomUI:onCreate()
-    self:setInOutAction()
-    self.closeBtn = helper.findNodeByName(self.resourceNode_,"closeBtn")
-    self.closeBtn:setPressedActionEnabled(true)
-	self.m_sv = helper.findNodeByName(self.resourceNode_, "sv")
-	self.m_club_node = helper.findNodeByName(self.resourceNode_,"club_node")
-    helper.findNodeByName(self.m_club_node,"btn_yes"):setPressedActionEnabled(true)
-	self.m_no_club_node = helper.findNodeByName(self.resourceNode_,"no_club_node")
-	-- self:updateView()
-	self:requestMsg()
+  self:setInOutAction()
+  self.closeBtn = helper.findNodeByName(self.resourceNode_,"closeBtn")
+  self.closeBtn:setPressedActionEnabled(true)
+  self.m_sv = helper.findNodeByName(self.resourceNode_, "sv")
+  self.m_club_node = helper.findNodeByName(self.resourceNode_,"club_node")
+  helper.findNodeByName(self.m_club_node,"btn_yes"):setPressedActionEnabled(true)
+  self.m_no_club_node = helper.findNodeByName(self.resourceNode_,"no_club_node")
+  ---- self:updateView()
+  --self:requestMsg()
 end
 
 function ClubRoomUI:requestMsg(  )

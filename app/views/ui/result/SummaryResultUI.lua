@@ -117,18 +117,6 @@ function SummaryResultUI:updateSummaryUI()
         return
     end
 
-    --红包
-    if(not Is_App_Store and Is_Open_Hongbao)then
-        local uidLs = ""
-        self.m_uidLs = {}
-        for i=1,#entity do
-            local parse = (i == #entity) and "" or "-"
-            uidLs = uidLs..entity[i].uid..parse
-            table.insert(self.m_uidLs,entity[i].uid)
-        end
-        self:requestGetMoney(uidLs)
-    end
-
     local maxPoint 
     self.uiList = {}
     for i = 1, #entity do

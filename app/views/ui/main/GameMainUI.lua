@@ -59,12 +59,12 @@ function GameMainUI:onCreate()
     print("UserData is ======")
     print(UserData)
     self:PrintTable(UserData)
-    if(UserData.isAddClub)then
-       self.createImage = display.newSprite("uires/main/main_create_2.png", 485-30,210):addTo(self,1)
-    else
-        self.createImage = display.newSprite("uires/main/main_create.png", 485-30,210):addTo(self,1)
-    end
-
+    -- if(UserData.isAddClub)then
+    --    self.createImage = display.newSprite("uires/main/main_create_2.png", 485-30,210):addTo(self,1)
+    -- else
+    --     self.createImage = display.newSprite("uires/main/main_create.png", 485-30,210):addTo(self,1)
+    -- end
+    self.createImage = display.newSprite("uires/main/main_create.png", 485-30,210):addTo(self,1)
     --闪光
     local lightPos = cc.p(425,225)
     local clipStencil = cc.Node:create()         --模板
@@ -212,12 +212,7 @@ function GameMainUI:onCreate()
     local guset_mask = helper.findNodeByName(self.resourceNode_,"guset_mask")
     guset_mask:setVisible(Is_App_Store)
 
-    self.mainClubBtn = helper.findNodeByName(self.resourceNode_,"mainClubBtn")
-    --self.mainClubBtn:setVisible(not Is_App_Store and not UserData.isAddClub)
-    self.mainClubBtn:setVisible(false)
-
     self.mainBuildBtn = helper.findNodeByName(self.resourceNode_,"mainBuildBtn")
-    --self.mainBuildBtn:setVisible(not Is_App_Store and UserData.isAddClub)
     self.mainBuildBtn:setVisible(false)
 
 
@@ -235,18 +230,6 @@ function GameMainUI:onCreate()
     --开启麦克风
     if(not Is_App_Store)then
         LuaCallPlatformFun.openMicPhone()
-    end
-
-    --红包活动
-    if(not Is_App_Store and Is_Open_Hongbao)then
-        self:addHongbao()
-        self.m_hbIconCall = gScheduler:scheduleScriptFunc(handler(self,self.updateHbAction),3,false)
-    end
-
-    --魔坛争霸
-    if(not Is_App_Store and is_Motan)then
-        self:addMotan()
-        self.m_mtIconCall = gScheduler:scheduleScriptFunc(handler(self,self.updateMtAction),3,false)
     end
 end
 
@@ -270,37 +253,7 @@ function GameMainUI:onEnter()
     
     if(Is_App_Store)then return end
     performWithDelay(self, handler(self,self.firstSendCard),.5)
-
-    --只在外部请求一次
-    if(nil == UserData.isAddClub)then
-        self:requestClub()
-    end
-
     self:checkMail()
-
-    --登录弹红包
-    if(Is_Open_Hongbao and not UserData.loginOpenHB)then
-        UserData.loginOpenHB = true
-        performWithDelay(self, handler(self,self.onHongbao),.5)
-    end
-
-    --登录弹魔坛
-    if(is_Motan and not UserData.loginOpenMt)then
-        UserData.loginOpenMt = true
-        performWithDelay(self, handler(self,self.onMotan),.5)
-    end
-
-    --判断是否俱乐部群主
-    HttpServiers:getClubInfo({userId = UserData.uid},
-        function(entity,response,statusCode)
-            if entity  then
-                --群主俱乐部信息
-                UserData.groupHolderTbl = entity
-                self.mainPiLiang:setVisible(true)
-            else
-                self.mainPiLiang:setVisible(false)
-            end
-        end)
 end
 
 function GameMainUI:checkMail()
@@ -393,11 +346,12 @@ end
 function GameMainUI:onCreateGame()
     --判断房卡数打开页面
     if not UserData.isInGame then
-        if(UserData.isAddClub)then
-            UIMgr:openUI(consts.UI.ClubRoomUI)
-        else
-          UIMgr:openUI(consts.UI.createRoomUITwo)
-        end
+        -- if(UserData.isAddClub)then
+        --     UIMgr:openUI(consts.UI.ClubRoomUI)
+        -- else
+        --   UIMgr:openUI(consts.UI.createRoomUITwo)
+        -- end
+        UIMgr:openUI(consts.UI.createRoomUITwo)
     else
         self:close()
     end
@@ -539,28 +493,28 @@ function GameMainUI:onPiLiangCreate()
 end
 
 function GameMainUI:onHongbao(  )
-    if(Is_App_Store or not Is_Open_Hongbao)then return end
-    UIMgr:openUI(consts.UI.HongbaoUI)
+    -- if(Is_App_Store or not Is_Open_Hongbao)then return end
+    -- UIMgr:openUI(consts.UI.HongbaoUI)
 end
 
 function GameMainUI:onMotan()
-    if(Is_App_Store or not is_Motan)then return end
-    UIMgr:openUI(consts.UI.MotanUI)
+    -- if(Is_App_Store or not is_Motan)then return end
+    -- UIMgr:openUI(consts.UI.MotanUI)
 end
 
 --跑得快推广
 function GameMainUI:onPdkClick()
-    cc.Application:getInstance():openURL("https://wap.kuailai88.com/share/download/appId/30/appCode/klpdk.html")
+    --cc.Application:getInstance():openURL("https://wap.kuailai88.com/share/download/appId/30/appCode/klpdk.html")
 end
 
 --湖北麻将推广
 function GameMainUI:onHbmjClick()
-    cc.Application:getInstance():openURL("https://wap.kuailai88.com/share/download/appId/3/appCode/klhbmj.html")
+    --cc.Application:getInstance():openURL("https://wap.kuailai88.com/share/download/appId/3/appCode/klhbmj.html")
 end
 
 --跑胡子推广
 function GameMainUI:onPhzClick()
-    cc.Application:getInstance():openURL("https://wap.kuailai88.com/share/download/appId/40/")
+   --cc.Application:getInstance():openURL("https://wap.kuailai88.com/share/download/appId/40/")
 end
 
 function GameMainUI:proListHandler(msg)
@@ -646,12 +600,9 @@ function GameMainUI:requestClub()
     function(entity,response,statusCode)
         if response and (response.status == 1 or response.errCode == 0) then
             if(#response.data > 0)then
-                self.createImage:setTexture("uires/main/main_create_2.png")
-                UserData.isAddClub = true
+                -- self.createImage:setTexture("uires/main/main_create_2.png")
+                -- UserData.isAddClub = true
             end
-            --self.mainClubBtn:setVisible(not UserData.isAddClub)
-            --self.mainBuildBtn:setVisible(UserData.isAddClub)
-
             self.mainClubBtn:setVisible(false)
             self.mainBuildBtn:setVisible(false)
         else

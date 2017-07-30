@@ -72,9 +72,7 @@ function CreateRoomUITwo:onCreate(clubData)
     end
     --1转转 2长沙 3郴州 4红中 5宁乡 6常德
     --顺序
-    -- local tab_seq_list = {1, 2, 3}
-     local tab_seq_list = {1, 5, 2, 6, 3, 4}
-    -- local tab_seq_list = {1, 5, 2, 3, 4}
+     local tab_seq_list = {1, 2, 5, 4, 3, 6}
     for _, v in pairs(tab_seq_list) do
         self.list_tab:pushBackCustomItem(self["tab_btn_"..v])
     end
