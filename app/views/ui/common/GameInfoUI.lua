@@ -18,10 +18,10 @@ function GameInfoUI:onCreate()
     if UserData.table_config ~= nil then
         if UserData.table_config.rule_txt_first_line ~= nil and #UserData.table_config.rule_txt_first_line > 0 then
             local x = 1346
-            self.txRoomNum:setPosition(cc.p(x,100))
+            --self.txRoomNum:setPosition(cc.p(x,100))
           
             self.txRule:setString(string.sub(UserData.table_config.rule_txt_first_line ,1, #UserData.table_config.rule_txt_first_line - 1))
-            self.txRule:setPosition(cc.p(x,74))
+            --self.txRule:setPosition(cc.p(x,74))
            
             self.txRuleSecondLine = ccui.Text:create(string.sub(UserData.table_config.rule_txt,
               #UserData.table_config.rule_txt_first_line + 2,#UserData.table_config.rule_txt),

@@ -50,18 +50,18 @@ function RecordMainUI:updateData(records)
       local itemHeight = 140
       local lineInterval = 3
       --local scrollviewWidth = 1050
-      local scrollviewWidth = 1050
+      local scrollviewWidth = 1060
       local scrollviewHeight = #records * (itemHeight+lineInterval)
-      if scrollviewHeight<610 then
-         scrollviewHeight = 610
+      if scrollviewHeight<570 then
+         scrollviewHeight = 570
       end
       self.scrollview:setInnerContainerSize(cc.size(scrollviewWidth, scrollviewHeight))
-      self.scrollview:setContentSize(cc.size(scrollviewWidth, 610))
+      self.scrollview:setContentSize(cc.size(scrollviewWidth, 570))
       for i=1,#records do
           scrollviewHeight = scrollviewHeight-itemHeight-lineInterval
           local ui = uiRoot:create(uiname, {index = i})
           ui:setAnchorPoint(cc.p(0,1))
-          ui:setPosition(cc.p(-15, scrollviewHeight))
+          ui:setPosition(cc.p(0, scrollviewHeight))
           ui:setItemData(records[i])
           ui:addTo(self.scrollview, 1)
       end

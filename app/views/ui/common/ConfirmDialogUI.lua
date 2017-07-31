@@ -60,8 +60,8 @@ function ConfirmDialogUI:onCreate(msg)
         self.noBtn:setPosition(cc.p(display.width/2, (display.height-self.contentSize.height)/2+self.btnPadding))
         self.yesBtn:setVisible(false)
     end
-    self.yesBtn:setPositionY((display.height-self.contentSize.height)/2+self.btnPadding - 5)
-    self.noBtn:setPositionY((display.height-self.contentSize.height)/2+self.btnPadding - 5)
+    self.yesBtn:setPositionY((display.height-self.contentSize.height)/2+self.btnPadding - 5 -70)
+    self.noBtn:setPositionY((display.height-self.contentSize.height)/2+self.btnPadding - 5 -70)
 
     if msg.title then
         self.titleImg:loadTexture(msg.title)

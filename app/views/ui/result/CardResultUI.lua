@@ -18,24 +18,22 @@ local uiGameInfo = require(consts.UI.GameInfoUI);
 function CardResultUI:onCreate()
 
     self.font = "Arial"
-    self.title = helper.findNodeByName(self.resourceNode_,"title")
+    --self.title = helper.findNodeByName(self.resourceNode_,"title")
     self.title_text = helper.findNodeByName(self.resourceNode_,"title_text")
-
-    -- if self:isHu() then
-    --     if self:isHu_Chairs(UserData.myChairId) then
-    --         -- self:changeTitle("mj/result_win.png")
-    --         self:changeTitle("uires/result.png")
-    --         -- self.title:loadTexture("mj/titleBg_1.png")
-    --         self.title:loadTexture("uires/createRoom/tab.png")
-    --     else
-    --         self:changeTitle("mj/result_lose.png")
-    --         self.title:loadTexture("mj/titleBg_2.png")
-    --     end
-    -- else
-    --     self:changeTitle("mj/result_flow.png")
-    --     self.title:loadTexture("mj/titleBg_2.png")
-    -- end kylin
-
+    if self:isHu() then
+        if self:isHu_Chairs(UserData.myChairId) then
+            -- self:changeTitle("mj/result_win.png")
+            self:changeTitle("uires/result.png")
+            -- self.title:loadTexture("mj/titleBg_1.png")
+            --self.title:loadTexture("uires/createRoom/tab.png")
+        else
+            self:changeTitle("mj/result_lose.png")
+            --self.title:loadTexture("mj/titleBg_2.png")
+        end
+    else
+        self:changeTitle("mj/result_flow.png")
+        --self.title:loadTexture("mj/titleBg_2.png")
+    end
     self.btn_start = helper.findNodeByName(self.resourceNode_,"btn_start")
     self.btn_start:setPressedActionEnabled(true)
     self.sBg = helper.findNodeByName(self.resourceNode_,"sBg")
@@ -44,8 +42,6 @@ function CardResultUI:onCreate()
     -- self.bottemFrame = helper.findNodeByName(self.resourceNode_,"Image_bottem")
     -- self.coverBg = helper.findNodeByName(self.resourceNode_,"Image_cover_bg")
     -- self.bottemCover = helper.findNodeByName(self.resourceNode_,"Image_cover")
-
-    self:createPlay(nil)
     if UserData.cardResult ~= nil then
       if not self:isTableEmpty(UserData.cardResult.birdCard) then
           self.bridCount = self:createZhuoniao(UserData.cardResult.birdCard);
@@ -60,12 +56,15 @@ function CardResultUI:onCreate()
     end
     --helper.findNodeByName(self.resourceNode_,"Image_3"):loadTexture("mj/"..UserData:getCurBgType().."/result_bg.jpg")
 
-    -- local gameInfo = uiGameInfo:create();
-    -- --gameInfo:setPosition(cc.p(-5, self.layout_zhuoniao:getPositionY() - 30))
-    -- -- gameInfo:addTo(self, 0)
-    -- gameInfo:setPosition(cc.p(78, 24))
-    -- gameInfo:setAnchorPoint(cc.p(0,0))
-    -- gameInfo:addTo(self.Image_3, 0)
+    local gameInfo = uiGameInfo:create();
+    -- gameInfo:setPosition(cc.p(-5, self.layout_zhuoniao:getPositionY() - 30))
+    -- gameInfo:addTo(self, 0)
+
+    gameInfo:setPosition(cc.p(78, 24))
+    gameInfo:ignoreAnchorPointForPosition(false)
+    gameInfo:setAnchorPoint(cc.p(0,0))
+    gameInfo:addTo(self.Image_3, 0)
+
     print("上传ping", UserData.canUploadPing)
     if UserData.canUploadPing then
         local log = ""
@@ -103,7 +102,7 @@ end
 
 --服务器数据收集处理
 function CardResultUI:proListHandler(msg)
-	--暂时没有回调
+    --暂时没有回调
     -- if msg.name == "login_login_by_account" then
     --     DataModel.game_state.me = msg.args.userid
     --     self:into_mj({enter_code = "1283899"})
@@ -141,149 +140,26 @@ function CardResultUI:changeTitle(img)
     self.title_text:loadTexture(img,0)
 end
 
--- --创建玩家数据
--- function CardResultUI:createPlay(cardResult)
---     print("liujialin125==")
---     print(cardResult)
---     local plays = nil
---     if not cardResult then return end
---     if( UserData:isZhuanZhuan() or UserData:isChangDe()) and cardResult.player_balance then
---         plays = cardResult.player_balance
---     elseif UserData:isChangSha() and cardResult.changsha_player_balance then
---         plays = cardResult.changsha_player_balance
---     elseif UserData:isNingXiang() and cardResult.ningxiang_player_balance then
---         plays = cardResult.ningxiang_player_balance
---     elseif UserData:isChenZhou() and cardResult.player_balance then
---         plays = cardResult.player_balance
---     elseif UserData:isHongZhong() and cardResult.player_balance then
---         plays = cardResult.player_balance
---     else
---         return
---     end
---     local sBgHeight = self.sBg:getContentSize().height
---     print("sBgHeight=" .. sBgHeight)
---     local count = #plays
---     local itemHeight = sBgHeight / count
---     print("itemHeight=" .. itemHeight)
---     local itemYBottom
---     local itemCenterY
---     --local y = 557-30;
---     local space = 50;
---     local offsetY = 5
---     for i = 1, count do
---         local x = 110
---         itemYBottom = sBgHeight - i * itemHeight
---         print("itemYBottom=" .. itemYBottom)
---         itemCenterY = itemYBottom + itemHeight / 2 - 15
---         print("itemCenterY=" .. itemCenterY)
---         --玩家名
---         local play= cc.LabelTTF:create(self:getPlayName(i), self.font, 30):addTo(self.sBg,1)
---         play:setPosition(cc.p(80, offsetY + itemCenterY + self:getScaleSize(space)))
---         play:setAnchorPoint(cc.p(0,0.5))
---         if self:isBanker(i) then
---             --庄家图标
---             local zhuang = display.newSprite("mj/icon_self_zhuang.png", 0, 0):addTo(self.sBg, 1)
---             zhuang:setPosition(cc.p(15,offsetY + itemCenterY + self:getScaleSize(space)-5))
---             zhuang:setAnchorPoint(cc.p(0,0.5))            
---         end
---         --当前玩家
---         if i == UserData.myChairId then
---             play:setColor(helper.str2Color("#edc744"))
---         end
---         --玩家胡牌描述
---         local playOthertype= cc.LabelTTF:create(self:getHuDescriStr(plays[i],i), self.font, 30):addTo(self.sBg,1)
---         playOthertype:setPosition(cc.p(x+200+10, offsetY + itemCenterY+ self:getScaleSize(space)))
---         playOthertype:setAnchorPoint(cc.p(0,0.5))
-     
-       
---         --麻将
---         local jtiles = json.decode(plays[i].handCard)
---         if jtiles ~=nil then
---             --if UserData:isLaizi() then
---                 self:laiziSort(jtiles)
---             --end
---             local handcardcount = #jtiles
---             for j=1,handcardcount do
---                 local tilescount = #jtiles[j]
---                 --if j==handcardcount then
---                     --self:sort(jtiles[j])
---                 --end
---                 for k=1,tilescount do
---                     local free = false
---                     local mj = MahjongTile.new({id =(jtiles[j])[k], type = 9, is_free = free,is_dfree = true}):addTo(self.sBg, 1)
---                     mj:setPosition(cc.p(x-10, itemCenterY))
---                     mj:setMyScale(mjScale)
---                     if (jtiles[j])[k]==45 and UserData:isLaizi() then
---                      local laiziImg = display.newSprite("mj/laizi.png"):addTo(mj, 0)
---                      laiziImg:setPosition(cc.p(15, 25))
---                     end
---                     x = x+(mjScale*mjWidth)
---                 end
---                 x = x+20
---             end
---         end
-
---         local huCards = {}
---         if type(plays[i].huCard) == "number" then
---             if plays[i].huCard > 0 then
---                table.insert(huCards,plays[i].huCard)
---             end
---         elseif type(plays[i].huCard) == "table" then
---            table.merge(huCards, plays[i].huCard)
---         end
-
---         --胡牌
---         for i = 1,#huCards do
---             local mj = MahjongTile.new({id =huCards[i], type = 9, is_free = false,is_hu = false,is_dfree = true}):addTo(self.sBg, 1)
---             mj:setPosition(cc.p(x-10, itemCenterY))
---             mj:setMyScale(mjScale)
---             x = x+(mjScale*mjWidth)*i
---             local huImg = display.newSprite("mj/hu.png"):addTo(mj.cg, 0)
---             huImg:setPosition(cc.p(40, 60))
---         end
-
---         --x=x+150
---     --积分
---         --local f7= cc.LabelTTF:create(plays[i].fang, self.font, 30):addTo(self.sBg,1)
---         --f7:setPosition(cc.p(x, y))
---         --x=x+100
---         --积分
---         UserData:setPlayerPoint(i,plays[i].point)
---         local point = self:calculatePoint(plays[i])
---         local c7= cc.LabelTTF:create(point, self.font, 30):addTo(self.sBg,1)
---         c7:setPosition(cc.p(950, itemCenterY))
-
---         --胡图标
---         if UserData.cardResult.hu_chairs ~=nil then
---             for h=1,#UserData.cardResult.hu_chairs do
---                 if UserData.cardResult.hu_chairs[h]==i then
---                     local hu = display.newSprite("mj/battle_hu.png", 0, 0):addTo(self.sBg, 1)
---                     local scaleold = hu:getScale()
---                     hu:setScale(scaleold)
---                     hu:setPosition(cc.p(1050,itemCenterY))
---                     hu:setAnchorPoint(cc.p(0,0.5))
---                 end
---             end
---         end
---         --画分隔线
---         if i<count then
---             local linel =display.newSprite("mj/result_line.png"):addTo(self.sBg, 1)
---             linel:setPosition(cc.p(25,itemYBottom))
---             linel:setAnchorPoint(cc.p(0,0.5))
---         end
---         --y = y-self:getScaleSize(space)
---     end
--- end kylin
-
-
 --创建玩家数据
 function CardResultUI:createPlay(cardResult)
-    print("liujialin125==")
-    print(cardResult)
-    
+    local plays = nil
+    if not cardResult then return end
+    if( UserData:isZhuanZhuan() or UserData:isChangDe()) and cardResult.player_balance then
+        plays = cardResult.player_balance
+    elseif UserData:isChangSha() and cardResult.changsha_player_balance then
+        plays = cardResult.changsha_player_balance
+    elseif UserData:isNingXiang() and cardResult.ningxiang_player_balance then
+        plays = cardResult.ningxiang_player_balance
+    elseif UserData:isChenZhou() and cardResult.player_balance then
+        plays = cardResult.player_balance
+    elseif UserData:isHongZhong() and cardResult.player_balance then
+        plays = cardResult.player_balance
+    else
+        return
+    end
     local sBgHeight = self.sBg:getContentSize().height
     print("sBgHeight=" .. sBgHeight)
-    local count = 4
+    local count = #plays
     local itemHeight = sBgHeight / count
     print("itemHeight=" .. itemHeight)
     local itemYBottom
@@ -298,70 +174,71 @@ function CardResultUI:createPlay(cardResult)
         itemCenterY = itemYBottom + itemHeight / 2 - 15
         print("itemCenterY=" .. itemCenterY)
         --玩家名
-        local play= cc.LabelTTF:create("niaoospspps", self.font, 30):addTo(self.sBg,1)
+        local play= cc.LabelTTF:create(self:getPlayName(i), self.font, 30):addTo(self.sBg,1)
         play:setPosition(cc.p(80, offsetY + itemCenterY + self:getScaleSize(space)))
         play:setAnchorPoint(cc.p(0,0.5))
-        if 1 then
+        play:setColor(helper.str2Color("#5f2b01"))
+        if self:isBanker(i) then
             --庄家图标
             local zhuang = display.newSprite("mj/icon_self_zhuang.png", 0, 0):addTo(self.sBg, 1)
             zhuang:setPosition(cc.p(15,offsetY + itemCenterY + self:getScaleSize(space)-5))
             zhuang:setAnchorPoint(cc.p(0,0.5))            
         end
         --当前玩家
-        -- if i == UserData.myChairId then
-        --     play:setColor(helper.str2Color("#edc744"))
-        -- end
+        if i == UserData.myChairId then
+            play:setColor(helper.str2Color("#5f2b01"))
+        end
         --玩家胡牌描述
-        local playOthertype= cc.LabelTTF:create("hupaoji", self.font, 30):addTo(self.sBg,1)
+        local playOthertype= cc.LabelTTF:create(self:getHuDescriStr(plays[i],i), self.font, 30):addTo(self.sBg,1)
         playOthertype:setPosition(cc.p(x+200+10, offsetY + itemCenterY+ self:getScaleSize(space)))
         playOthertype:setAnchorPoint(cc.p(0,0.5))
      
        
         --麻将
-        --local jtiles = json.decode(plays[i].handCard)
-        if 1 then
+        local jtiles = json.decode(plays[i].handCard)
+        if jtiles ~=nil then
             --if UserData:isLaizi() then
-                --self:laiziSort(jtiles)
+                self:laiziSort(jtiles)
             --end
-            local handcardcount = 20
+            local handcardcount = #jtiles
             for j=1,handcardcount do
-                local tilescount = 10
+                local tilescount = #jtiles[j]
                 --if j==handcardcount then
                     --self:sort(jtiles[j])
                 --end
                 for k=1,tilescount do
                     local free = false
-                    local mj = MahjongTile.new({id =2, type = 9, is_free = free,is_dfree = true}):addTo(self.sBg, 1)
+                    local mj = MahjongTile.new({id =(jtiles[j])[k], type = 9, is_free = free,is_dfree = true}):addTo(self.sBg, 1)
                     mj:setPosition(cc.p(x-10, itemCenterY))
                     mj:setMyScale(mjScale)
-                    -- if (jtiles[j])[k]==45 and UserData:isLaizi() then
-                    --  local laiziImg = display.newSprite("mj/laizi.png"):addTo(mj, 0)
-                    --  laiziImg:setPosition(cc.p(15, 25))
-                    -- end
+                    if (jtiles[j])[k]==45 and UserData:isLaizi() then
+                     local laiziImg = display.newSprite("mj/laizi.png"):addTo(mj, 0)
+                     laiziImg:setPosition(cc.p(15, 25))
+                    end
                     x = x+(mjScale*mjWidth)
                 end
                 x = x+20
             end
         end
 
-        -- local huCards = {}
-        -- if type(plays[i].huCard) == "number" then
-        --     if plays[i].huCard > 0 then
-        --        table.insert(huCards,plays[i].huCard)
-        --     end
-        -- elseif type(plays[i].huCard) == "table" then
-        --    table.merge(huCards, plays[i].huCard)
-        -- end
+        local huCards = {}
+        if type(plays[i].huCard) == "number" then
+            if plays[i].huCard > 0 then
+               table.insert(huCards,plays[i].huCard)
+            end
+        elseif type(plays[i].huCard) == "table" then
+           table.merge(huCards, plays[i].huCard)
+        end
 
-        -- --胡牌
-        -- for i = 1,#huCards do
-        --     local mj = MahjongTile.new({id =huCards[i], type = 9, is_free = false,is_hu = false,is_dfree = true}):addTo(self.sBg, 1)
-        --     mj:setPosition(cc.p(x-10, itemCenterY))
-        --     mj:setMyScale(mjScale)
-        --     x = x+(mjScale*mjWidth)*i
-        --     local huImg = display.newSprite("mj/hu.png"):addTo(mj.cg, 0)
-        --     huImg:setPosition(cc.p(40, 60))
-        -- end
+        --胡牌
+        for i = 1,#huCards do
+            local mj = MahjongTile.new({id =huCards[i], type = 9, is_free = false,is_hu = false,is_dfree = true}):addTo(self.sBg, 1)
+            mj:setPosition(cc.p(x-10, itemCenterY))
+            mj:setMyScale(mjScale)
+            x = x+(mjScale*mjWidth)*i
+            local huImg = display.newSprite("mj/hu.png"):addTo(mj.cg, 0)
+            huImg:setPosition(cc.p(40, 60))
+        end
 
         --x=x+150
     --积分
@@ -369,29 +246,30 @@ function CardResultUI:createPlay(cardResult)
         --f7:setPosition(cc.p(x, y))
         --x=x+100
         --积分
-        -- UserData:setPlayerPoint(i,plays[i].point)
-        -- local point = self:calculatePoint(plays[i])
-        -- local c7= cc.LabelTTF:create(point, self.font, 30):addTo(self.sBg,1)
-        -- c7:setPosition(cc.p(950, itemCenterY))
+        UserData:setPlayerPoint(i,plays[i].point)
+        local point = self:calculatePoint(plays[i])
+        local c7= cc.LabelTTF:create(point, self.font, 30):addTo(self.sBg,1)
+        c7:setColor(helper.str2Color("#c01322"))
+        c7:setPosition(cc.p(950-30, itemCenterY))
 
-        -- --胡图标
-        -- if UserData.cardResult.hu_chairs ~=nil then
-        --     for h=1,#UserData.cardResult.hu_chairs do
-        --         if UserData.cardResult.hu_chairs[h]==i then
-        --             local hu = display.newSprite("mj/battle_hu.png", 0, 0):addTo(self.sBg, 1)
-        --             local scaleold = hu:getScale()
-        --             hu:setScale(scaleold)
-        --             hu:setPosition(cc.p(1050,itemCenterY))
-        --             hu:setAnchorPoint(cc.p(0,0.5))
-        --         end
-        --     end
-        -- end
-        -- --画分隔线
-        -- if i<count then
-        --     local linel =display.newSprite("mj/result_line.png"):addTo(self.sBg, 1)
-        --     linel:setPosition(cc.p(25,itemYBottom))
-        --     linel:setAnchorPoint(cc.p(0,0.5))
-        -- end
+        --胡图标
+        if UserData.cardResult.hu_chairs ~=nil then
+            for h=1,#UserData.cardResult.hu_chairs do
+                if UserData.cardResult.hu_chairs[h]==i then
+                    local hu = display.newSprite("mj/battle_hu.png", 0, 0):addTo(self.sBg, 1)
+                    local scaleold = hu:getScale()
+                    hu:setScale(scaleold)
+                    hu:setPosition(cc.p(1050-100,itemCenterY))
+                    hu:setAnchorPoint(cc.p(0,0.5))
+                end
+            end
+        end
+        --画分隔线
+        if i<count then
+            local linel =display.newSprite("mj/result_line.png"):addTo(self.sBg, 1)
+            linel:setPosition(cc.p(25-50,itemYBottom))
+            linel:setAnchorPoint(cc.p(0,0.5))
+        end
         --y = y-self:getScaleSize(space)
     end
 end

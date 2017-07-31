@@ -79,16 +79,10 @@ function MahjongTile:setImage()
         -- else
         --     self.cg = display.newSprite(tileName[sid].. lid ..".png"):addTo(self, 1)
         -- end
-
-        -- if self.type == 1 or self.type == 5 or self.type > 24 then
-        --     self.cg = display.newSprite(tileName[sid].. lid ..".png"):addTo(self, 1)
-        -- else
-        --     self.cg = display.newSprite(tileName[sid].. lid .."s.png"):addTo(self, 1)
-        -- end
         if self.type == 1 or self.type == 5 or self.type > 24 then
-            self.cg = display.newSprite("mj/mylaizi.png"):addTo(self, 1)
+            self.cg = display.newSprite(tileName[sid].. lid ..".png"):addTo(self, 1)
         else
-            self.cg = display.newSprite("mj/mylaizi.png"):addTo(self, 1)
+            self.cg = display.newSprite(tileName[sid].. lid .."s.png"):addTo(self, 1)
         end
         if self.is_free and self.cg then
             if self.type == 1 then

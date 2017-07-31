@@ -60,13 +60,13 @@ function RecordDetailUI:updateData(records)
    if records~=nil and #records>0 then
       local itemHeight = 78
       local lineInterval = 2
-      local scrollviewWidth = 1290
+      local scrollviewWidth = 1070
       local scrollviewHeight = #records * (itemHeight+lineInterval)
-      if scrollviewHeight<520 then
-         scrollviewHeight = 520
+      if scrollviewHeight<500 then
+         scrollviewHeight = 500
       end
       self.scrollview:setInnerContainerSize(cc.size(scrollviewWidth, scrollviewHeight))
-      self.scrollview:setContentSize(cc.size(scrollviewWidth, 520))
+      self.scrollview:setContentSize(cc.size(scrollviewWidth, 500))
       for i=1,#records do
          scrollviewHeight = scrollviewHeight-itemHeight-lineInterval
          local ui_bg = false
@@ -77,7 +77,7 @@ function RecordDetailUI:updateData(records)
          end
          local ui = uiRoot:create(uiname)
          ui:setAnchorPoint(cc.p(0,1))
-         ui:setPosition(cc.p(-60, scrollviewHeight))
+         ui:setPosition(cc.p(0, scrollviewHeight))
          local allData = clone(records[i])
          local shareCode = allData.shareCode
          table.merge(allData, self.data)

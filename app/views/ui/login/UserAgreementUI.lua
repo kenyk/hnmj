@@ -21,7 +21,7 @@ function UserAgreementUI:onCreate(params)
         "严禁恶意利用本游戏进行赌博等违法犯罪行为，一经发现，立即封停账号、并向公安机关举报。\n"  .. 
         "甲方：巨云信息技术（深圳）有限公司\n"  .. 
         "乙方：您\n"  .. 
-        "欢迎使用巨云信息技术（深圳）有限公司（以下简称”巨云“）的游戏服务，请您（以下可称”用户“或”您“）仔细阅读以下条款；如果您未满18周岁，请在法定监护人的陪同下阅读本协议。本协议系您与巨云之间就《么么麻将》（下称本游戏）所订立的权利义务规范。如果您对本协议的任何条款及/或巨云随时对其的修改表示异议，您可以选择不进入本游戏；进入本游戏或使用巨云服务，则意味着您同意遵守本协议全部约定，包括巨云对本协议随时所做的任何修改，并完全服从巨云的统一管理。\n"  .. 
+        "欢迎使用巨云信息技术（深圳）有限公司（以下简称”巨云“）的游戏服务，请您（以下可称”用户“或”您“）仔细阅读以下条款；如果您未满18周岁，请在法定监护人的陪同下阅读本协议。本协议系您与巨云之间就《么么湖南麻将》（下称本游戏）所订立的权利义务规范。如果您对本协议的任何条款及/或巨云随时对其的修改表示异议，您可以选择不进入本游戏；进入本游戏或使用巨云服务，则意味着您同意遵守本协议全部约定，包括巨云对本协议随时所做的任何修改，并完全服从巨云的统一管理。\n"  .. 
         "\n"  .. 
         "一、  定义\n"  .. 
         "1.1本协议：指本协议正文及修订版本、本游戏的规则及修订版本。本协议同时还包括文化部依据《网络游戏管理暂行办法》（文化部令第49号）制定的《网络游戏服务格式化协议必备条款》（详见附录）\n"  .. 
@@ -127,7 +127,9 @@ function UserAgreementUI:onCreate(params)
     self.closeBtn:setPressedActionEnabled(true)
     self.scrollView = helper.findNodeByName(self.resourceNode_,"scrollView")
     self.bgContent = helper.findNodeByName(self.resourceNode_,"bgContent")
-    self.Image_1 = helper.findNodeByName(self.resourceNode_,"Image_1")
+    --self.Image_1 = helper.findNodeByName(self.resourceNode_,"Image_1")
+    self.Image_1 = helper.findNodeByName(self.resourceNode_,"Image")
+    
     
     -- if(not params or not params.type)then
     --     performWithDelay(self,handler(self,self.showText), 0.05)
@@ -138,8 +140,8 @@ function UserAgreementUI:onCreate(params)
     for i=1,2 do
         local title = helper.findNodeByName(self.resourceNode_,"title_"..i)
         local msg = helper.findNodeByName(self.resourceNode_,"msg_"..i)
-        title:setVisible(false)
-        msg:setVisible(false)
+        -- title:setVisible(false)
+        -- msg:setVisible(false)
     end
 end
 
@@ -165,7 +167,8 @@ function UserAgreementUI:update(data)
         helper.findNodeByName(self.resourceNode_,"msg_"..1):setVisible(false)
         helper.findNodeByName(self.resourceNode_,"msg_"..2):setVisible(false)
         local size = cc.size(980, 480)
-        local pos = cc.p(10, 10)
+        --local pos = cc.p(10, 10)
+        local pos = cc.p(1202/2, 80)
         if cc.PLATFORM_OS_WINDOWS == cc.Application:getInstance():getTargetPlatform() then
             local layout = ccui.Layout:create()
             layout:setBackGroundColorType(ccui.LayoutBackGroundColorType.solid)
@@ -177,10 +180,11 @@ function UserAgreementUI:update(data)
             self.Image_1:addChild(layout)
         else
             local view = ccexp.WebView:create()
-            -- view:loadURL("https://sojump.com/jq/10881567.aspx")
-            view:loadURL(params.url)
+            --view:loadURL("https://sojump.com/jq/10881567.aspx")
+            view:loadURL("www.hao123.com")
+            --view:loadURL(params.url)
             view:setBounces(false)
-            view:setAnchorPoint(cc.p(0, 0))
+            view:setAnchorPoint(cc.p(0.5, 0))
             view:setContentSize(size)
             view:setScalesPageToFit(true)
             view:setPosition(pos)

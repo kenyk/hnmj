@@ -72,7 +72,7 @@ function DismissRoomApplyDialogLayerSec:loadPlayerInfo()
         if self.applayID == UserData.uid then   
             self:hideButtons()                  --申请人本身不可选择
         else
-            self.bellImage:setVisible(true)     --非申请人倒计时选择
+            --self.bellImage:setVisible(true)     --非申请人倒计时选择
         end
     end
 end

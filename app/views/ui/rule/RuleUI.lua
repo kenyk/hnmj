@@ -34,17 +34,28 @@ function RuleUI:onCreate(data)
     self.btnBack:setPressedActionEnabled(true)
 
     self.m_item_node = helper.findNodeByName(self.resourceNode_,"m_item_node")
+    self.item_node_bg = helper.findNodeByName(self.resourceNode_,"Image_3")
 
     local index = UserData.curMahjongType
     local tab_msg = consts.roomCreateMsg["tab_"..index]
     if(not tab_msg)then return end
 
+    local bgHeight = 484
+    local  startY = 484 - 104 + 80*2 
+    local  startX = 918/2.0
+
+    local width = 670
+
     --选择项
     self.m_ckBoxList = {}
     self.m_ckBoxListPanel = {}
-    local lastBgBox
+    local lastBgView
     local has_y = 1
+    local y = 1
+    local offsetY = 75
+    local rowNum = 1
     local offsetY = 80
+
     for i=1,#tab_msg do
         local tmp = tab_msg[i]
         self.m_ckBoxList[i] = {}
@@ -53,20 +64,36 @@ function RuleUI:onCreate(data)
         -- if "" ~= tmp[1] or i == #tab_msg then
         if "" ~= tmp[1] and "-" ~= tmp[1] then
             local bg_box = ccui.ImageView:create()
-            bg_box:loadTexture("uires/createRoom/baikuang.png")
+            bg_box:loadTexture("uires/createRoom/button2.png")
             bg_box:setScale9Enabled(true)
             bg_box:setContentSize(cc.size(670, 70))
-            self.m_item_node:addChild(bg_box)
-            bg_box:setPosition(cc.p(-55, -(has_y-1)*offsetY + 35))
-            bg_box:setAnchorPoint(cc.p(0, 1))
+            self.item_node_bg:addChild(bg_box)
+            --bg_box:setPosition(cc.p(-55, -(has_y-1)*offsetY + 35))
+            bg_box:setPosition(cc.p(startX, startY))
+            bg_box:setAnchorPoint(cc.p(0.5, 1))
             lastBgBox = bg_box   
+
+            local bgView = ccui.ImageView:create()
+            bgView:loadTexture("uires/createRoom/baikuang.png")
+            bgView:setScale9Enabled(true)
+            bgView:setContentSize(cc.size(width, 70))
+            bg_box:addChild(bgView)
+            bgView:setAnchorPoint(cc.p(0, 1))
+            bgView:setPosition(cc.p(0, 70))
+            lastBgView = bgView
+
+            rowNum = 1
+            startY = startY - 70 -10
+
             if i == 1 or i == 2 then
                 bg_box:setVisible(false)
             end
         -- end
         -- if "" == tmp[1] or (i == #tab_msg and tab_msg[#tab_msg][5]) then
         elseif "-" ~= tmp[1] then
-            lastBgBox:setContentSize(cc.size(670, 150))
+            rowNum = rowNum+1
+            lastBgView:setContentSize(cc.size(width, rowNum*70))
+            --lastBgBox:setContentSize(cc.size(670, 150))
             local line = ccui.ImageView:create()
             line:loadTexture("uires/createRoom/fengexian.png")
             line:setContentSize(cc.size(650, 1))
@@ -74,10 +101,13 @@ function RuleUI:onCreate(data)
             line:setAnchorPoint(cc.p(0, 0.5))
             lastBgBox:addChild(line, 999)
             line:setPosition(cc.p(10, 80))
+
+            startY = startY - 70
         end
 
         if (i == #tab_msg and tab_msg[#tab_msg][5]) then
-            lastBgBox:setContentSize(cc.size(670, 150))
+            --lastBgBox:setContentSize(cc.size(670, 150))
+            lastBgView:setContentSize(cc.size(width, rowNum*70))
             local line = ccui.ImageView:create()
             line:loadTexture("uires/createRoom/fengexian.png")
             line:setContentSize(cc.size(650, 1))
@@ -87,12 +117,20 @@ function RuleUI:onCreate(data)
             line:setPosition(cc.p(10, 80))
         end
         
+        local x = 1
+        y = rowNum
         for j=2,#tmp do
             if tmp[j] then
                 local item,cb,panel_click = self:createItem(tmp[j])
-                self.m_item_node:addChild(item)
+                --self.m_item_node:addChild(item)
+                lastBgBox:addChild(item)
                 if(tmp[j][2])then
-                    item:setPosition(cc.p((has_x-1)*215,-(has_y-1)*offsetY))
+                    --item:setPosition(cc.p((has_x-1)*215,-(has_y-1)*offsetY))
+                    if(#tmp[j]==4) then
+                        item:setPosition(cc.p((has_x-1)*220+30,35-(y -1)*70))
+                    else
+                        item:setPosition(cc.p((has_x-1)*(220-30)+30,35-(y -1)*70))
+                    end
                     has_x = has_x + 1
                 else
                     item:setVisible(false)

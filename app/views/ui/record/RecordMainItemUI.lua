@@ -54,6 +54,8 @@ function RecordMainItemUI:onCreate(data)
     self.record_index = helper.findNodeByName(self.resourceNode_,"record_index")
     self.insizeWidth = 1200
     self.inOffsetX = 50
+    self.insizeWidth = 1060
+    self.inOffsetX = 0
     self.Image_1 = helper.findNodeByName(self.resourceNode_,"Image_1")
     -- self.Image_1:setTouchEnabled(true)
     -- self.Image_1:setSwallowTouches(false)

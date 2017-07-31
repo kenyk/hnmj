@@ -18,9 +18,9 @@ local mjScale = 1.3
 local tabPos = {1770,1720,2300,2450}
 
 local tabNum = 6
-local size = cc.size(720, 480)
+local size = cc.size(670, 480)
 -- local pos = cc.p(440, 130)
-local pos = cc.p(10, 10)
+local pos = cc.p(340, 20)
 
 function HelpUI:onCreate(params)
     self:setInOutAction()
@@ -30,6 +30,8 @@ function HelpUI:onCreate(params)
     self.bgContent = helper.findNodeByName(self.resourceNode_,"bgContent")
     self.list_tab = helper.findNodeByName(self.resourceNode_,"list_tab")
     self.img_bg_view = helper.findNodeByName(self.resourceNode_,"img_bg_view")
+
+    self:update(nil)
 end
 
 function HelpUI:onDrawCsb()
@@ -42,12 +44,14 @@ function HelpUI:onDrawCsb()
         local tab_img_s = helper.findNodeByName(self.resourceNode_,"tab_"..i.."_img_s")
         local tab_node = helper.findNodeByName(self.resourceNode_,"tab_node_"..i)
         local textNormal = helper.findNodeByName(self.resourceNode_,"tab_"..i.."_text_n")
-        textNormal:setString(self.titles[i])
+        --textNormal:setString(self.titles[i])
+        textNormal:setString("转转麻将")
         local tab_text_s = helper.findNodeByName(tab_img_s,"tab_"..i.."_text_s")
         table.insert(self.m_tab_img,tab_img_s)
         table.insert(self.m_tab_node,tab_node)
         tab_img_s:setVisible(1 == i)
-        tab_text_s:setString(self.titles[i])
+        --tab_text_s:setString(self.titles[i])
+        tab_text_s:setString("转转麻将")
     end
     if(Is_App_Store)then
         local tab_3_text_n = helper.findNodeByName(self.resourceNode_,"tab_3_text_n")
@@ -83,6 +87,37 @@ function HelpUI:onDrawWeb( params )
     self:onClickTab(obj)
 end
 
+-- function HelpUI:onClickTab(tag)
+--     print(tag)
+--     for i=1, tabNum do
+--         self["tab_btn_"..i]:setSelect(false)
+--     end
+--     self["tab_btn_"..tag]:setSelect(true)
+
+--     -- for i=1,tabNum do
+--     --   self.m_tab_img[i]:setVisible(i == tag)
+--     --   -- self.m_tab_node[i]:setVisible(i == tag)
+--     --   self.m_tab_node[i]:setVisible(false)
+--     -- end
+
+--     if self.webview and self.urls[tag] then
+--         print("webUrl:",self.urls[tag])
+--         self.webview:removeSelf()
+
+--         local view = ccexp.WebView:create()
+--         view:loadURL(self.urls[tag])
+--         view:setAnchorPoint(cc.p(0, 0))
+--         view:setContentSize(size)
+--         view:setScalesPageToFit(true)
+--         view:setPosition(pos)
+--         view:setBounces(false)
+--         -- self.resourceNode_:addChild(view)
+--         self.img_bg_view:addChild(view)
+--         self.webview = view
+--     end
+--     self.m_sv:setInnerContainerSize(cc.size(1290, tabPos[tag]))
+-- end
+
 function HelpUI:onClickTab(tag)
     print(tag)
     for i=1, tabNum do
@@ -96,12 +131,12 @@ function HelpUI:onClickTab(tag)
     --   self.m_tab_node[i]:setVisible(false)
     -- end
 
-    if self.webview and self.urls[tag] then
-        print("webUrl:",self.urls[tag])
+    if self.webview then
+
         self.webview:removeSelf()
 
         local view = ccexp.WebView:create()
-        view:loadURL(self.urls[tag])
+        view:loadURL("https://www.baidu.com")
         view:setAnchorPoint(cc.p(0, 0))
         view:setContentSize(size)
         view:setScalesPageToFit(true)
@@ -115,10 +150,13 @@ function HelpUI:onClickTab(tag)
 end
 
 function HelpUI:update(data)
-    local params = data.data
-    if(params)then    
-        self.urls = params.urls
-        self.titles = params.titles
+    print("HelpUI:update(data)")
+    --local params = data.data
+    --if(params)then    
+    if(1)then
+        print("HelpUI:update(data) =======")
+        --self.urls = params.urls
+        --self.titles = params.titles
         self:onDrawCsb()
         --webview
 

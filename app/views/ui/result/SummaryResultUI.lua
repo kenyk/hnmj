@@ -33,7 +33,8 @@ function SummaryResultUI:onCreate()
     self:updateSummaryUI()
     helper.updateGameCard()
     self.isCanshare = true
-    helper.findNodeByName(self.resourceNode_,"Image_3"):loadTexture("mj/"..UserData:getCurBgType().."/result_bg.jpg")
+    -- helper.findNodeByName(self.resourceNode_,"Image_3"):loadTexture("mj/"..UserData:getCurBgType().."/result_bg.jpg")
+    helper.findNodeByName(self.resourceNode_,"Image_3"):loadTexture("uires/createRoom/bigBox.png")
 
     --俱乐部
     local clubData = UserData.table_config.rule.clubData
@@ -237,7 +238,7 @@ function SummaryResultUI:updateLayerInfo(i, entity)
     local dividerWidth =( consts.Size.width - count * uiWidth) / (count + 1)
     dividerWidth = dividerWidth-5
     local playerInfo = UserData:getPlayerInfoById(entity.uid)
-    ui:addTo(self, 0);
+    ui:addTo(self.image3, 0);
     ui:setAnchorPoint(cc.p(.0, .0))
     -- ui:setPosition(cc.p(dividerWidth+12 +(i - 1) *(uiWidth + dividerWidth), 132));
     ui:setPosition(cc.p(dividerWidth+12 +(i - 1) *(uiWidth + dividerWidth), 147));
@@ -255,8 +256,10 @@ function SummaryResultUI:updateLayerInfo(i, entity)
         image:addTo(ui.iPlayerAvatar)
     elseif  playerInfo and playerInfo.image_url then
         local image = NetSprite:getSpriteUrl(playerInfo.image_url,"mj/bg_default_avatar_1.png")
-        image:setPosition(cc.p(50,47))
-        image:setImageContentSize(cc.size(100,100))
+        --image:setPosition(cc.p(50,47))
+        --image:setImageContentSize(cc.size(100,100))
+        image:setPosition(cc.p(75/2,75/2))
+        image:setImageContentSize(cc.size(75,75))
         image:addTo(ui.iPlayerAvatar)
     end
     if (UserData:isZhuanZhuan() or UserData:isChangDe()) and  UserData.game_balance_result.player_result then
@@ -394,6 +397,12 @@ function SummaryResultUI:updateHongbao(data)
             end,.71)
         end
     end
+end
+
+function SummaryResultUI:onClose()
+    -- body
+    print("onSummaryResultUIClick")
+    self:close()
 end
 
 return SummaryResultUI

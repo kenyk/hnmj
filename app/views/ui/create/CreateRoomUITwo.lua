@@ -80,6 +80,8 @@ function CreateRoomUITwo:onCreate(clubData)
     helper.findNodeByName(self.resourceNode_,"createBtn"):setPressedActionEnabled(true)
     --选项点
     self.m_item_node = helper.findNodeByName(self.resourceNode_,"item_node")
+    self.m_item_node:setVisible(false)
+    self.item_node_bg = helper.findNodeByName(self.resourceNode_,"item_node_bg")
 
     local card_des = helper.findNodeByName(self.resourceNode_,"card_des")
     card_des:setVisible(not Is_App_Store)
@@ -144,79 +146,114 @@ function CreateRoomUITwo:tabSelect( index )
     dataMgr:setMahjongType(index)
 
     self.m_item_node:removeAllChildren()
+    self.item_node_bg:removeAllChildren()
     local tab_msg = consts.roomCreateMsg["tab_"..index]
     if(not tab_msg)then return end
 
     local width = 800
 
+    local bgHeight = 699
+    local  startY = 450
+    local  startX = 0
+
     --选择项
     self.m_ckBoxList = {}
     self.m_ckBoxListPanel = {}
     local lastBgBox
+    local lastBgView
     local has_y = 1
+    local y = 1
     local offsetY = 75
     local rowNum = 1
     for i=1,#tab_msg do
         local tmp = tab_msg[i]
         self.m_ckBoxList[i] = {}
         self.m_ckBoxListPanel[i] = {}
-        if "" ~= tmp[1] and "-" ~= tmp[1] then
-            local title =  ccui.Text:create(tmp[1], nil, 30):addTo(self.m_item_node, 100)
-            title:setColor(helper.str2Color("#82560b"))
-            title:setPosition(cc.p(cc.p(-60, -(has_y-1)*offsetY)))
-        end
+        -- if "" ~= tmp[1] and "-" ~= tmp[1] then
+        --     local title =  ccui.Text:create(tmp[1], nil, 30):addTo(self.item_node_bg, 100)
+        --     title:setColor(helper.str2Color("#82560b"))
+        --     --title:setPosition(cc.p(cc.p(-60, -(has_y-1)*offsetY)))
+        --     title:setAnchorPoint(cc.p(0,0))
+        --     title:setPosition(cc.p(cc.p(0, -(has_y-1)*offsetY)))
+        -- end
+
+        
+            --title:setPosition(cc.p(cc.p(-60, -(has_y-1)*offsetY)))
+
         local has_x = 1
         if "" ~= tmp[1] and "-" ~= tmp[1] then
+
             local bg_box = ccui.ImageView:create()
-            bg_box:loadTexture("uires/createRoom/baikuang.png")
+            bg_box:loadTexture("uires/createRoom/button2.png")
             bg_box:setScale9Enabled(true)
             bg_box:setContentSize(cc.size(width, 70))
-            self.m_item_node:addChild(bg_box)
-            bg_box:setPosition(cc.p(-110-15, -(has_y-1)*offsetY + 35))
+            self.item_node_bg:addChild(bg_box)
+            bg_box:setPosition(cc.p(startX, startY))
+
+            local bgView = ccui.ImageView:create()
+            bgView:loadTexture("uires/createRoom/baikuang.png")
+            bgView:setScale9Enabled(true)
+            bgView:setContentSize(cc.size(width, 70))
+            bg_box:addChild(bgView)
+            bgView:setAnchorPoint(cc.p(0, 1))
+            bgView:setPosition(cc.p(0, 70))
+            lastBgView = bgView
+
+            --local bg_box_node = ccui.Node:create()
+
             bg_box:setAnchorPoint(cc.p(0, 1))
             lastBgBox = bg_box
+            
+            local title =  ccui.Text:create(tmp[1], nil, 30):addTo(bg_box, 100)
+            title:setColor(helper.str2Color("#82560b"))
+            title:setAnchorPoint(cc.p(0,1))
+            title:setPosition(cc.p(15, 70-20))
+
+            rowNum = 1
+            startY = startY - 70 -10
+
         elseif "-" ~= tmp[1] then
-            lastBgBox:setContentSize(cc.size(width, 140))
-            rowNum = 2
+            --lastBgBox:setContentSize(cc.size(width, 140))
+            rowNum = rowNum+1
+            lastBgView:setContentSize(cc.size(width, rowNum*70))
             local line = ccui.ImageView:create()
             line:loadTexture("uires/createRoom/xuxian.png")
             line:setAnchorPoint(cc.p(0, 0.5))
             --lastBgBox:addChild(line)
             line:setPosition(cc.p(100, 75))
+            local title =  ccui.Text:create(tmp[1], nil, 30):addTo(lastBgBox, 100)
+            title:setColor(helper.str2Color("#82560b"))
+            title:setAnchorPoint(cc.p(0,1))
+            title:setPosition(cc.p(15, 140-20))
+
             if 1 == self.m_select_tab then
-                lastBgBox:setContentSize(cc.size(width, 210))
-                rowNum = 3
                 line:setPosition(cc.p(100, 145))
+                title:setPosition(cc.p(15, 210-20))
             end
+            startY = startY - 70
         end
         
+        local x = 1
+        y = rowNum
         for j=2,#tmp do
             if tmp[j] then
                 local item,cb,panel_click = self:createItem(tmp[j])
-                self.m_item_node:addChild(item)
+                --self.m_item_node:addChild(item)
+                item:setAnchorPoint(cc.p(0, 0.5))
+                lastBgBox:addChild(item)
+                
                 if(tmp[j][2])then
                     print("the has_y is "..has_y)
+                    
                     if(#tmp[j]==4) then
-                        
-                        -- if (has_y == 1) then
-                        --     item:setPosition(cc.p((has_x-1)*220,-(has_y-1)*offsetY+10))
-                        -- else
-                        --     item:setPosition(cc.p((has_x-1)*220,-(has_y-1)*offsetY))
-                        -- end
-
-                        item:setPosition(cc.p((has_x-1)*220,-(has_y-1)*offsetY))
-                        
+                        --item:setPosition(cc.p((has_x-1)*220,-(has_y-1)*offsetY))
+                        item:setPosition(cc.p((has_x-1)*240+120,35-(y -1)*70))
                     else
-                        -- if (has_y == 1) then
-                        --     item:setPosition(cc.p((has_x-1)*(220-50),-(has_y-1)*offsetY+10))
-                        -- else
-                        --     item:setPosition(cc.p((has_x-1)*(220-50),-(has_y-1)*offsetY))
-                        -- end
-
-                        item:setPosition(cc.p((has_x-1)*(220-50),-(has_y-1)*offsetY))
-                        
+                        --item:setPosition(cc.p((has_x-1)*(220-50),-(has_y-1)*offsetY))
+                        item:setPosition(cc.p((has_x-1)*(220-40)+120,35-(y -1)*70))
                     end
                     has_x = has_x + 1
+                    x = x + 1
                 else
                     item:setVisible(false)
                 end
