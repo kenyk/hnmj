@@ -86,7 +86,7 @@ end
 
 function GameAssetsManager:playSplash(scene,callback)
     if device.platform ~= "ios" then
-        local logoTips = ccui.ImageView:create("mj/splash.jpg")
+        local logoTips = ccui.ImageView:create("mj/splash.png")
         -- local healthTips = ccui.ImageView:create(healthPath)
         logoTips:setPosition(display.width/2,display.height/2)
         -- healthTips:setPosition(display.width/2,display.height/2)

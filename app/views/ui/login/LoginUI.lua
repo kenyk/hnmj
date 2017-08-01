@@ -298,7 +298,8 @@ function LoginUI:onLow(event)
     function(entity,response,statusCode)
         if response and (response.status == 1 or response.errCode == 0) then
             if(response.data and response.data.list)then
-                local helpUrl = response.data.list[1].url
+                --local helpUrl = response.data.list[1].url
+                local helpUrl = "http://www.baidu.com" --changed by liujialin
                 -- if(helpUrl)then UIMgr:openUI(consts.UI.UserAgreementUI,nil,nil,{url = helpUrl, type = 1}) end
                 NotifyMgr:push(consts.Notify.UPDATE_MAIL, {url = helpUrl, type = 1})
             end

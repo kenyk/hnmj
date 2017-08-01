@@ -99,7 +99,7 @@ function RuleUI:onCreate(data)
             line:setContentSize(cc.size(650, 1))
             line:setScale9Enabled(true)
             line:setAnchorPoint(cc.p(0, 0.5))
-            lastBgBox:addChild(line, 999)
+            --lastBgBox:addChild(line, 999)
             line:setPosition(cc.p(10, 80))
 
             startY = startY - 70
@@ -113,7 +113,7 @@ function RuleUI:onCreate(data)
             line:setContentSize(cc.size(650, 1))
             line:setScale9Enabled(true)
             line:setAnchorPoint(cc.p(0, 0.5))
-            lastBgBox:addChild(line, 999)
+            --lastBgBox:addChild(line, 999)
             line:setPosition(cc.p(10, 80))
         end
         
@@ -148,7 +148,8 @@ function RuleUI:onCreate(data)
                         self.m_ckBoxList[4][4] = cb
                         self.m_ckBoxListPanel[4][4] =panel_click
                     end
-                    item:setPosition(cc.p((0)*215,-(has_y)*offsetY))
+                    --item:setPosition(cc.p((0)*215,-(has_y)*offsetY))
+                    --item:setPosition(cc.p((0)*(220-30)+30,35-(y -1)*70))
                 else
                     table.insert(self.m_ckBoxList[i],cb)
                     table.insert(self.m_ckBoxListPanel[i],panel_click)
