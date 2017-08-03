@@ -236,12 +236,15 @@ function SummaryResultUI:updateLayerInfo(i, entity)
     end
     local ui = uiRoot:create(uiname);
     local dividerWidth =( consts.Size.width - count * uiWidth) / (count + 1)
-    dividerWidth = dividerWidth-5
+    dividerWidth =( 1202 - 57*2- count * uiWidth) / (count + 1)
+    --dividerWidth = dividerWidth-5
     local playerInfo = UserData:getPlayerInfoById(entity.uid)
     ui:addTo(self.image3, 0);
     ui:setAnchorPoint(cc.p(.0, .0))
+    ui:ignoreAnchorPointForPosition(false)
+    ui:setPosition(cc.p(dividerWidth+57 +(i - 1) *(uiWidth + dividerWidth), 144));
     -- ui:setPosition(cc.p(dividerWidth+12 +(i - 1) *(uiWidth + dividerWidth), 132));
-    ui:setPosition(cc.p(dividerWidth+12 +(i - 1) *(uiWidth + dividerWidth), 147));
+    --ui:setPosition(cc.p(dividerWidth+12 +(i - 1) *(uiWidth + dividerWidth), 147));
     ui.txPlayerName:setString(playerInfo.nickname);
     if  UserData:isRoomMaster(entity.uid) then
         ui.sFlagRoomHost:setVisible(true)
@@ -399,7 +402,7 @@ function SummaryResultUI:updateHongbao(data)
     end
 end
 
-function SummaryResultUI:onClose()
+function SummaryResultUI:onClose(sender)
     -- body
     print("onSummaryResultUIClick")
     self:close()

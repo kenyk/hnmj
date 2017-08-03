@@ -181,7 +181,7 @@ function UserAgreementUI:update(data)
         else
             local view = ccexp.WebView:create()
             --view:loadURL("https://sojump.com/jq/10881567.aspx")
-            view:loadURL("www.hao123.com")
+            view:loadURL("http://www.baidu.com")
             --view:loadURL(params.url)
             view:setBounces(false)
             view:setAnchorPoint(cc.p(0.5, 0))

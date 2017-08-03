@@ -94,18 +94,20 @@ function MahjongGameWaitLayer:initLayer()
     self.btn_dismissroom = btn_dismissroom
     btn_dismissroom:setVisible(false)
     -- 开始按钮
-    local btn_start = ccui.Button:create("uires/common/btn_7_green.png", "uires/common/btn_7_green_press.png")
+    -- local btn_start = ccui.Button:create("uires/common/btn_7_green.png", "uires/common/btn_7_green_press.png")
+    local btn_start = ccui.Button:create("uires/res/btn_text_start_game.png", "uires/mj/btn_text_start_game.png")
     btn_start:setPosition(cc.p(consts.Size.width/2, 230))
     btn_start:addTo(self, 1)
     btn_start:setPressedActionEnabled(true)
     self.btn_start = btn_start
     local text_start = display.newSprite("mj/btn_text_start_game.png")
     text_start:setPosition(btn_start:getContentSize().width/2,btn_start:getContentSize().height/2+5)
-    text_start:addTo(btn_start)
+    --text_start:addTo(btn_start)
     self.btn_start:setVisible(false)
 
     -- 规则按钮
-    self.btn_rule = ccui.Button:create("mj/btn_rule.png", "mj/btn_rule.png", ""):addTo(self, 1)
+    --self.btn_rule = ccui.Button:create("mj/btn_rule.png", "mj/btn_rule.png", ""):addTo(self, 1)
+    self.btn_rule = ccui.Button:create("mj/battle_btn_rule.png", "mj/battle_btn_rule.png", ""):addTo(self, 1)
     self.btn_rule:setAnchorPoint(cc.p(0.5, 1))
     self.btn_rule:setPressedActionEnabled(true)
     self.btn_rule:setPosition(cc.p(consts.Size.width - 160, 755))

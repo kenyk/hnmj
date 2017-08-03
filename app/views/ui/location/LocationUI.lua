@@ -108,8 +108,10 @@ function LocationUI:setPlayerMsg(index, info )
         self.m_pNode[index].head:loadTexture("uires/main/guest_icon_1.png")
     elseif info.url then
         local newHead = NetSprite:getSpriteUrl(info.url,"mj/bg_default_avatar_1.png")
-        newHead:setPosition(cc.p(58,58))
-        newHead:setImageContentSize(cc.size(116,116))
+        -- newHead:setPosition(cc.p(58,58))
+        -- newHead:setImageContentSize(cc.size(116,116))
+        newHead:setPosition(cc.p(60,60))
+        newHead:setImageContentSize(cc.size(120,120))
         newHead:addTo(self.m_pNode[index].head,0)
     else
       self.m_pNode[index].head:loadTexture("mj/bg_default_avatar_1.png")

@@ -365,6 +365,7 @@ function MahjongGamePlayLayer:initLayer()
     -- self.textInfo:setColor(cc.c3b(239, 237, 224))
     -- self.textInfo:setColor(consts.bg_type[UserData:getCurBgType()].textInfoColor)
     self.textInfo:setColor(cc.c3b(38, 231, 233))
+    --self.textInfo:setColor(cc.c3b(62, 34, 19))
     self.textInfo:setAnchorPoint(cc.p(0.5, 1))
     self.textInfo:setPosition(cc.p(700, 420))
     self:addChild(self.textInfo, 2)
@@ -482,7 +483,7 @@ end
 function MahjongGamePlayLayer:pass()
     if self.bn_hu1:isVisible() or self.bn_hu2:isVisible() then
         local dialogContentLabel1 = helper.createRichLabel({maxWidth = 600,fontSize = 30,fontColor = consts.ColorType.THEME})
-        dialogContentLabel1:setString("您确定不胡么！")
+        dialogContentLabel1:setString("您真的不胡吗！")
         UIMgr:showConfirmDialog("提示",{child = dialogContentLabel1, childOffsetY = 10},
             handler(self,function()
                 self.should_touch = false
@@ -559,7 +560,7 @@ function MahjongGamePlayLayer:gang(sender)
 
     if self.bn_hu1:isVisible() or self.bn_hu2:isVisible() then
         local dialogContentLabel1 = helper.createRichLabel({maxWidth = 600,fontSize = 30,fontColor = consts.ColorType.THEME})
-        dialogContentLabel1:setString("您确定不胡么！")
+        dialogContentLabel1:setString("您真的不胡吗！")
         UIMgr:showConfirmDialog("提示",{child = dialogContentLabel1, childOffsetY = 10},
             handler(self,function()
                 handle()
@@ -594,7 +595,7 @@ function MahjongGamePlayLayer:bu(sender)
 
     if self.bn_hu1:isVisible() or self.bn_hu2:isVisible() then
         local dialogContentLabel1 = helper.createRichLabel({maxWidth = 600,fontSize = 30,fontColor = consts.ColorType.THEME})
-        dialogContentLabel1:setString("您确定不胡么！")
+        dialogContentLabel1:setString("你真的不胡吗？")
         UIMgr:showConfirmDialog("提示",{child = dialogContentLabel1, childOffsetY = 10},
             handler(self,function()
                 handle()
@@ -625,7 +626,7 @@ function MahjongGamePlayLayer:peng(sender)
 
     if self.bn_hu1:isVisible() or self.bn_hu2:isVisible() then
         local dialogContentLabel1 = helper.createRichLabel({maxWidth = 600,fontSize = 30,fontColor = consts.ColorType.THEME})
-        dialogContentLabel1:setString("您确定不胡么！")
+        dialogContentLabel1:setString("你真的不胡吗？")
         UIMgr:showConfirmDialog("提示",{child = dialogContentLabel1, childOffsetY = 10},
             handler(self,function()
                 handle()
@@ -673,7 +674,7 @@ function MahjongGamePlayLayer:chi(index, line)
 
     if self.bn_hu1:isVisible() or self.bn_hu2:isVisible() then
         local dialogContentLabel1 = helper.createRichLabel({maxWidth = 600,fontSize = 30,fontColor = consts.ColorType.THEME})
-        dialogContentLabel1:setString("您确定不胡么！")
+        dialogContentLabel1:setString("你真的不胡吗？")
         UIMgr:showConfirmDialog("提示",{child = dialogContentLabel1, childOffsetY = 10},
             handler(self,function()
                 handle()

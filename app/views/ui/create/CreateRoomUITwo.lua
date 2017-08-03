@@ -205,7 +205,7 @@ function CreateRoomUITwo:tabSelect( index )
             lastBgBox = bg_box
             
             local title =  ccui.Text:create(tmp[1], nil, 30):addTo(bg_box, 100)
-            title:setColor(helper.str2Color("#82560b"))
+            title:setColor(helper.str2Color("#613d1b"))
             title:setAnchorPoint(cc.p(0,1))
             title:setPosition(cc.p(15, 70-20))
 
@@ -222,7 +222,7 @@ function CreateRoomUITwo:tabSelect( index )
             --lastBgBox:addChild(line)
             line:setPosition(cc.p(100, 75))
             local title =  ccui.Text:create(tmp[1], nil, 30):addTo(lastBgBox, 100)
-            title:setColor(helper.str2Color("#82560b"))
+            title:setColor(helper.str2Color("#613d1b"))
             title:setAnchorPoint(cc.p(0,1))
             title:setPosition(cc.p(15, 140-20))
 

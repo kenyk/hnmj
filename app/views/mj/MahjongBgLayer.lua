@@ -170,7 +170,7 @@ end
 function MahjongBgLayer:updateFangAction()
     if(self.m_fangAction)then self.m_fangAction:removeFromParent()end
     self.m_fangAction = AnimationView:create("fang","action/fang/fang.csb")
-    self.m_fangAction:setPosition(cc.p(30,30))
+    self.m_fangAction:setPosition(cc.p(50,30))
     self.m_fangAction:gotoFrameAndPlay(0,false)
     self.m_fangAction:addTo(self.locationNode)
 end
@@ -419,6 +419,7 @@ function MahjongBgLayer:showUpdate()
         self.btn_emoji:setVisible(false)
         self.btn_ting:setVisible(false)
     end
+    --self.btn_rule:setVisible(false) --kylin
     self:updateGameInfo()
 end
 

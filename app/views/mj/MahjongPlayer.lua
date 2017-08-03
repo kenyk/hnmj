@@ -54,7 +54,7 @@ function MahjongPlayer:ctor(params)
     self.bg = display.newSprite("mj/"..UserData:getCurBgType().."/head_kuang.png", 0, 0):addTo(self, 0):setPosition(cc.p(1, 18))
     -- self.block = display.newSprite("mj/"..UserData:getCurBgType().."/battle_head_block.png", 0, 4):setVisible(false):addTo(self, 0)
     -- self.block:runAction(cc.Repeat:create(cc.Sequence:create(cc.FadeIn:create(0.8),cc.FadeOut:create(0.8)),cc.REPEAT_FOREVER))         
-    self.banker = display.newSprite("mj/icon_self_zhuang.png", -32, 50):addTo(self, 1)
+    self.banker = display.newSprite("mj/icon_self_zhuang.png", -32, 35):addTo(self, 1)
     -- self.banker:setRotation(-45)
     self.banker:setVisible(false)
     self.ic_readyfor_game= display.newSprite("mj/ic_readyfor_game.png", 0, 0):addTo(self.bg, 0)
@@ -108,7 +108,7 @@ function MahjongPlayer:sitDown(params)
     elseif params.url then
         self.head  = NetSprite:getSpriteUrl(params.url,"mj/bg_default_avatar_1.png")
         self.head:setPosition(cc.p(1,19))
-        self.head:setImageContentSize(cc.size(70,70))
+        self.head:setImageContentSize(cc.size(76,76))
         self.head:addTo(self, -1)
     else
       self.head = display.newSprite("mj/bg_default_avatar_1.png", 1, 19):addTo(self, -1)
@@ -127,7 +127,8 @@ function MahjongPlayer:sitDown(params)
     if self.status == "waiting" then
         self.ic_readyfor_game:setVisible(true)
     end
-    self.offLine = display.newSprite("mj/offline.png", 44, 76):addTo(self.bg, 1)
+    self.offLine = display.newSprite("mj/offline.png", 95, 93):addTo(self.bg, 1)
+    self.offLine:setPosition(cc.p(95/2.0, 93/2.0))
     self.offLine:setVisible(false)
 
     if self.piaoPoint then self.piaoPoint:removeSelf() end

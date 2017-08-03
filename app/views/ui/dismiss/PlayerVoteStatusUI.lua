@@ -28,11 +28,12 @@ function PlayerVoteStatusUI:refreshBaseInfo(userInfo)
         if  userInfo.image_url then
             local image = NetSprite:getSpriteUrl(userInfo.image_url,"mj/bg_default_avatar_2.png")
             image:setPosition(cc.p(self.headIcon:getContentSize().width / 2, self.headIcon:getContentSize().height / 2))
-            image:setImageContentSize(cc.size(self.headIcon:getContentSize().width, self.headIcon:getContentSize().height-3))
+            image:setImageContentSize(cc.size(self.headIcon:getContentSize().width, self.headIcon:getContentSize().height))
             image:addTo(self.headIcon)
          end
 	end
-	self.headframe = display.newSprite("mj/"..UserData:getCurBgType().."/head_kuang.png", 36, -10):setAnchorPoint(cc.p(0.5, 0))
+	--self.headframe = display.newSprite("mj/"..UserData:getCurBgType().."/head_kuang.png", 36, -10):setAnchorPoint(cc.p(0.5, 0))
+	self.headframe = display.newSprite("mj/"..UserData:getCurBgType().."/head_kuang.png", self.headIcon:getContentSize().width / 2, self.headIcon:getContentSize().height / 2):setAnchorPoint(cc.p(0.5, 0.5))
 	self.headframe:addTo(self.headIcon)
 end
 

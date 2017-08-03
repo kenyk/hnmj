@@ -192,6 +192,7 @@ function CardResultUI:createPlay(cardResult)
         local playOthertype= cc.LabelTTF:create(self:getHuDescriStr(plays[i],i), self.font, 30):addTo(self.sBg,1)
         playOthertype:setPosition(cc.p(x+200+10, offsetY + itemCenterY+ self:getScaleSize(space)))
         playOthertype:setAnchorPoint(cc.p(0,0.5))
+        playOthertype:setColor(helper.str2Color("#5f2b01"))
      
        
         --麻将
@@ -259,7 +260,7 @@ function CardResultUI:createPlay(cardResult)
                     local hu = display.newSprite("mj/battle_hu.png", 0, 0):addTo(self.sBg, 1)
                     local scaleold = hu:getScale()
                     hu:setScale(scaleold)
-                    hu:setPosition(cc.p(1050-100,itemCenterY))
+                    hu:setPosition(cc.p(1050-120,itemCenterY))
                     hu:setAnchorPoint(cc.p(0,0.5))
                 end
             end
@@ -267,7 +268,7 @@ function CardResultUI:createPlay(cardResult)
         --画分隔线
         if i<count then
             local linel =display.newSprite("mj/result_line.png"):addTo(self.sBg, 1)
-            linel:setPosition(cc.p(25-50,itemYBottom))
+            linel:setPosition(cc.p(25-100,itemYBottom))
             linel:setAnchorPoint(cc.p(0,0.5))
         end
         --y = y-self:getScaleSize(space)
