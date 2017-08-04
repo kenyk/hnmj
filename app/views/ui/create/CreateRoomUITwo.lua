@@ -732,7 +732,7 @@ function CreateRoomUITwo:onCheatChange(event)
         --开启定位
         print("开启")
         local dialogContentLabel1=helper.createRichLabel({maxWidth = 600,fontSize = 30})
-        dialogContentLabel1:setString("           是否开启防作弊模式?\n（该模式将会屏蔽距离相近的玩家）")
+        dialogContentLabel1:setString("           是否开启防作弊模式?\n（该模式将会屏蔽距离相近/IP相同的玩家）")
         dialogContentLabel1:setColor(cc.c3b(153, 78, 46))
         local dialogContent =cc.Layer:create()
         dialogContentLabel1:addTo(dialogContent,1)
