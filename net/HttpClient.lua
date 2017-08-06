@@ -138,7 +138,8 @@ function HttpClient:asyncGet(u, params, callback, host)
                 local temp = xhr.response
                 local entity = nil
                 if temp then 
-                    entity = json.decode((string.gsub(unicodeToUtf8(xhr.response),"\\/","/")))
+                    --entity = json.decode((string.gsub(unicodeToUtf8(xhr.response),"\\/","/")))
+                    entity = json.decode((string.gsub(xhr.response,"\\/","/")))
                 end
                 dump(entity)
                 if entity and entity.status  == 1 and entity.errCode == 0 then
