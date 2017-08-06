@@ -106,8 +106,7 @@ function MahjongGameWaitLayer:initLayer()
     self.btn_start:setVisible(false)
 
     -- 规则按钮
-    --self.btn_rule = ccui.Button:create("mj/btn_rule.png", "mj/btn_rule.png", ""):addTo(self, 1)
-    self.btn_rule = ccui.Button:create("mj/battle_btn_rule.png", "mj/battle_btn_rule.png", ""):addTo(self, 1)
+    self.btn_rule = ccui.Button:create("mj/btn_rule.png", "mj/btn_rule.png", ""):addTo(self, 1)
     self.btn_rule:setAnchorPoint(cc.p(0.5, 1))
     self.btn_rule:setPressedActionEnabled(true)
     self.btn_rule:setPosition(cc.p(consts.Size.width - 160, 755))

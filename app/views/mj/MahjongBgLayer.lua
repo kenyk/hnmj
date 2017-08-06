@@ -419,7 +419,6 @@ function MahjongBgLayer:showUpdate()
         self.btn_emoji:setVisible(false)
         self.btn_ting:setVisible(false)
     end
-    --self.btn_rule:setVisible(false) --kylin
     self:updateGameInfo()
 end
 
