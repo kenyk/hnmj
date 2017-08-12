@@ -20,11 +20,11 @@ function MotanUI:onExit()
 end
 
 function MotanUI:onBaoming()
-    cc.Application:getInstance():openURL("http://wap.kuailai88.com/index/actEnter")
+
 end
 
 function MotanUI:onDetail()
-    cc.Application:getInstance():openURL("http://wap.kuailai88.com/ClubCompetition/")
+
 end
 
 return MotanUI

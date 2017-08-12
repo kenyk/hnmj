@@ -225,6 +225,7 @@ function MahjongGamePlayLayer:initLayer()
     self.img_click_tip = helper.findNodeByName(self.csb, "img_click_tip"):setTexture("mj/"..UserData:getCurBgType().."/i18n_double_click.png"):setVisible(false)
     self.img_double_click = helper.findNodeByName(self.csb, "img_double_click"):setVisible(false)
     self.layout_click = helper.findNodeByName(self.csb, "layout_click")
+    self.layout_click:setVisible(false)
     -- self.layout_click:addTouchEventListener(function(sender, eventType)
     --     if eventType == ccui.TouchEventType.ended then
     --         print("2222222222", self.clickTime1)
@@ -482,7 +483,7 @@ end
 function MahjongGamePlayLayer:pass()
     if self.bn_hu1:isVisible() or self.bn_hu2:isVisible() then
         local dialogContentLabel1 = helper.createRichLabel({maxWidth = 600,fontSize = 30,fontColor = consts.ColorType.THEME})
-        dialogContentLabel1:setString("您真的不胡吗！")
+        dialogContentLabel1:setString("您真的不胡吗？")
         UIMgr:showConfirmDialog("提示",{child = dialogContentLabel1, childOffsetY = 10},
             handler(self,function()
                 self.should_touch = false
@@ -559,7 +560,7 @@ function MahjongGamePlayLayer:gang(sender)
 
     if self.bn_hu1:isVisible() or self.bn_hu2:isVisible() then
         local dialogContentLabel1 = helper.createRichLabel({maxWidth = 600,fontSize = 30,fontColor = consts.ColorType.THEME})
-        dialogContentLabel1:setString("您真的不胡吗！")
+        dialogContentLabel1:setString("您真的不胡吗？")
         UIMgr:showConfirmDialog("提示",{child = dialogContentLabel1, childOffsetY = 10},
             handler(self,function()
                 handle()

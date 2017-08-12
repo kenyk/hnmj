@@ -18,9 +18,9 @@ local mjScale = 1.3
 local tabPos = {1770,1720,2300,2450}
 
 local tabNum = 6
-local size = cc.size(670, 480)
+local size = cc.size(800, 560)
 -- local pos = cc.p(440, 130)
-local pos = cc.p(340, 20)
+local pos = cc.p(330, 20)
 
 function HelpUI:onCreate(params)
     self:setInOutAction()
@@ -87,56 +87,34 @@ function HelpUI:onDrawWeb( params )
     self:onClickTab(obj)
 end
 
--- function HelpUI:onClickTab(tag)
---     print(tag)
---     for i=1, tabNum do
---         self["tab_btn_"..i]:setSelect(false)
---     end
---     self["tab_btn_"..tag]:setSelect(true)
-
---     -- for i=1,tabNum do
---     --   self.m_tab_img[i]:setVisible(i == tag)
---     --   -- self.m_tab_node[i]:setVisible(i == tag)
---     --   self.m_tab_node[i]:setVisible(false)
---     -- end
-
---     if self.webview and self.urls[tag] then
---         print("webUrl:",self.urls[tag])
---         self.webview:removeSelf()
-
---         local view = ccexp.WebView:create()
---         view:loadURL(self.urls[tag])
---         view:setAnchorPoint(cc.p(0, 0))
---         view:setContentSize(size)
---         view:setScalesPageToFit(true)
---         view:setPosition(pos)
---         view:setBounces(false)
---         -- self.resourceNode_:addChild(view)
---         self.img_bg_view:addChild(view)
---         self.webview = view
---     end
---     self.m_sv:setInnerContainerSize(cc.size(1290, tabPos[tag]))
--- end
-
 function HelpUI:onClickTab(tag)
     print(tag)
     for i=1, tabNum do
         self["tab_btn_"..i]:setSelect(false)
     end
     self["tab_btn_"..tag]:setSelect(true)
-
-    -- for i=1,tabNum do
-    --   self.m_tab_img[i]:setVisible(i == tag)
-    --   -- self.m_tab_node[i]:setVisible(i == tag)
-    --   self.m_tab_node[i]:setVisible(false)
-    -- end
+    local  url 
+    if(tag == 1) then
+        url = "uires/uiSetting/zhuanzhuan.html"
+    elseif(tag == 5) then
+        url = "uires/uiSetting/ningxiang.html"
+    elseif(tag == 2) then
+        url = "uires/uiSetting/changsha.html"
+    elseif(tag == 6) then
+        url = "uires/uiSetting/changde.html"
+    elseif(tag == 3) then
+        url = "uires/uiSetting/chenzhou.html"
+    elseif(tag == 4) then
+        url = "uires/uiSetting/hongzhong.html"
+    end
 
     if self.webview then
 
         self.webview:removeSelf()
 
         local view = ccexp.WebView:create()
-        view:loadURL("https://www.baidu.com")
+        --view:loadURL("https://www.baidu.com")
+        view:loadFile(url)
         view:setAnchorPoint(cc.p(0, 0))
         view:setContentSize(size)
         view:setScalesPageToFit(true)
@@ -172,7 +150,7 @@ function HelpUI:update(data)
             self.img_bg_view:addChild(layout)
         else
             local view = ccexp.WebView:create()
-            -- view:loadURL(self.urls[1])
+            --view:loadURL(self.urls[1])
             view:setAnchorPoint(cc.p(0, 0))
             view:setContentSize(size)
             view:setScalesPageToFit(true)
@@ -193,9 +171,9 @@ function HelpUI:update(data)
         self["tab_btn_"..i] = btn
         btn.m_btn:addClickEventListener(function(sender) self:onClickTab(sender:getTag()) end)
     end
-    --1转转 2长沙 3郴州 4红中 5宁乡
+    --1转转 2长沙 3郴州 4红中 5宁乡 6常德
     --顺序
-    local tab_seq_list = {1, 5, 2, 6, 3, 4}
+    local tab_seq_list = {1, 2, 5, 4, 3, 6}
     for _, v in pairs(tab_seq_list) do
         self.list_tab:pushBackCustomItem(self["tab_btn_"..v])
     end

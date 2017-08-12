@@ -12,15 +12,12 @@ GameAssetsManager._pathToSave          = ""
 
  GameAssetsManager.urlName = "https://localhost:8080/clientUpdate/"
 if CC_PACKET_VERSION == 1 then
-    GameAssetsManager.urlName = "http://10.17.174.171:8190/Uploads/Download/Assets/hnmj/clientUpdate/"          --内网更新地址
+    GameAssetsManager.urlName = "https://www.gamemomo.cn/Uploads/Download/Assets/hnmj/clientUpdate/"     --内网更新地址
 elseif CC_PACKET_VERSION == 2 then
-    GameAssetsManager.urlName = "https://wap.kuailai88.com/Uploads/Download/Assets/hnmj/clientUpdate/"         --外网审核包更新地址
+    GameAssetsManager.urlName = "https://www.gamemomo.cn/Uploads/Download/Assets/hnmj/clientUpdate/"     --外网审核包更新地址
 elseif CC_PACKET_VERSION == 3 then
-    GameAssetsManager.urlName = "https://wap.kuailai88.com/Uploads/Download/Assets/hnmj/clientUpdateBeta/"       --外网发布包12-29更新地址
+    GameAssetsManager.urlName = "https://www.gamemomo.cn/Uploads/Download/Assets/hnmj/clientUpdateBeta/" --外网发布包更新地址
 end
-
-
---GameAssetsManager.urlName = "http://10.105.60.251:8080/updataFile/"
 
 GameAssetsManager.fileName = "/res.zip"
 GameAssetsManager.versionName = "/version.txt" .. "?a=" .. os.time()
@@ -87,36 +84,11 @@ end
 function GameAssetsManager:playSplash(scene,callback)
     if device.platform ~= "ios" then
         local logoTips = ccui.ImageView:create("mj/splash.png")
-        -- local healthTips = ccui.ImageView:create(healthPath)
         logoTips:setPosition(display.width/2,display.height/2)
-        -- healthTips:setPosition(display.width/2,display.height/2)
-
         logoTips:setOpacity(0)
-        -- healthTips:setOpacity(0)
         scene:addChild(logoTips)
-        -- scene:addChild(healthTips)
         
         local sequence1
-        -- local sequence2
-        -- local actions2 = {
-        --     cc.DelayTime:create(3.5),
-        --     cc.FadeIn:create(1.5),
-        --     cc.DelayTime:create(0.5),
-        --     cc.FadeOut:create(0.5),
-        --     cc.CallFunc:create(function ()
-        --         if device.platform ~= "ios" and device.platform ~= "android" then
-        --             self:videoEnd()
-        --         else
-        --             local isPlay = true --cc.UserDefault:getInstance():getBoolForKey("playVideo")
-        --             if isPlay then
-        --                 self:videoEnd()
-        --             else
-        --                 cc.UserDefault:getInstance():setBoolForKey("playVideo",true)
-        --                 self:playVideo()
-        --             end
-        --         end
-        --     end)
-        -- }
         local actions1 = {
             cc.FadeIn:create(2),
             cc.DelayTime:create(0.5),
@@ -126,13 +98,10 @@ function GameAssetsManager:playSplash(scene,callback)
             end)
         }
         sequence1 = transition.sequence(actions1)
-        -- sequence2 = transition.sequence(actions2)
         logoTips:runAction(sequence1)
-        -- healthTips:runAction(sequence2)
     else
         callback()
     end
-    
 end
 
 function GameAssetsManager:preCheckVersion()

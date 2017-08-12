@@ -37,7 +37,7 @@ CC_UPDATE_SET = false
 Is_App_Store = false
 
 --打包版本 1 内网包  2 外网审核包 3 外网企业包
-CC_PACKET_VERSION = 1
+CC_PACKET_VERSION = 3
 
 --防作弊模式开关
 Is_Cheat_Set = true

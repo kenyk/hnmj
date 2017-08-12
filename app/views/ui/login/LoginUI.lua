@@ -23,6 +23,7 @@ function LoginUI:onCreate()
     --self.login_test:setVisible(consts.App.APP_PLATFORM == cc.PLATFORM_OS_WINDOWS)
     --self.test:setString("200015")
     self.test:setString("2000005")
+    --self.test:setString("2000012")
     if WIN32DEBUG then
         self.test:setString(DEBUGACCOUNT)
     end
@@ -72,22 +73,11 @@ function LoginUI:onNetChange()
         if self.cbNW:isSelected() then
             ---内网
             consts.BIHttpHost = consts.BIHttpHost_lan
-            --consts.HttpHost = "10.17.174.171:8192"  
-            --consts.GameHttpHost = "10.17.173.92:8001" --涛
-            --consts.GameHttpHost = "10.17.174.171:8001" --内
             consts.HttpHost = "121.201.48.188:8192" 
             consts.GameHttpHost = "121.201.48.188:8001" --内
         else
-            ---外网
-            consts.BIHttpHost = consts.BIHttpHost_wan
-            -- consts.HttpHost = "api.kuailai88.com"
-            consts.HttpHost = "121.201.48.188:8192" --测试外网
-            -- consts.GameHttpHost = "dlklmj.kuailai88.com:8001"    --审核外网HTTP地址
-            -- consts.GameHttpHost = "dlklmj3.kuailai88.com:8001"     --发布包外网HTTP地址
-            consts.GameHttpHost = "dlklmjtest.kuailai88.com:8002"     --测试外网
-
-            consts.HttpHost = "api.kuailai88.com"
-            consts.GameHttpHost = "dlklmj.kuailai88.com:8001"
+            consts.HttpHost = "121.201.48.188:8192" 
+            consts.GameHttpHost = "121.201.48.188:8001" --内
         end
     elseif CC_PACKET_VERSION == 2 then
          --审核包使用
@@ -99,9 +89,6 @@ function LoginUI:onNetChange()
      elseif CC_PACKET_VERSION == 3 then
          --发布包使用
          if consts.App.APP_PLATFORM ~= cc.PLATFORM_OS_WINDOWS then
-
-             --consts.HttpHost = "api.kuailai88.com"
-             --consts.GameHttpHost = "dlklmj3.kuailai88.com:8001"
              consts.HttpHost = "119.29.64.46:40001"
              consts.GameHttpHost = "119.29.64.46:8001"
              consts.BIHttpHost = consts.BIHttpHost_wan
@@ -287,8 +274,6 @@ end
 
 function LoginUI:onLow(event)
     print("用户协议")
-	-- UIMgr:openUI(consts.UI.UserAgreementUI,nil,nil,{type = 1})
-
     HttpServiers:queryArticleList({
         appId = consts.appId,
         appCode = consts.appCode,
@@ -296,18 +281,10 @@ function LoginUI:onLow(event)
         artCat = "agreementNotice",
     },
     function(entity,response,statusCode)
-        if response and (response.status == 1 or response.errCode == 0) then
-            if(response.data and response.data.list)then
-                --local helpUrl = response.data.list[1].url
-                local helpUrl = "http://www.baidu.com" --changed by liujialin
-                -- if(helpUrl)then UIMgr:openUI(consts.UI.UserAgreementUI,nil,nil,{url = helpUrl, type = 1}) end
-                NotifyMgr:push(consts.Notify.UPDATE_MAIL, {url = helpUrl, type = 1})
-            end
-        else
-            --打开出错
-            print("错误码：",response.errCode,"错误信息：",response.error)
-        end
-    end)
+        local helpUrl = "uires/uiSetting/user_agreement.html" --changed by liujialin
+        NotifyMgr:push(consts.Notify.UPDATE_MAIL, {url = helpUrl, type = 1})
+    end
+    )
     UIMgr:openUI(consts.UI.UserAgreementUI,nil,nil)
 end
 

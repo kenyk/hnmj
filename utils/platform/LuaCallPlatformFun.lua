@@ -12,7 +12,7 @@ else
 	LuaBridge = require "cocos.cocos2d.luaTmp"
 end
 
-local defaultJavaClassName = "com/yiniu/klmj/LuaHelper"
+local defaultJavaClassName = "com/juyun66/hnmj/LuaHelper"
 local defaultObjCClassName = "OCLuaHelper"
 
 --分享方法
@@ -600,10 +600,10 @@ end
 function LuaCallPlatformFun.shareBattle( shareCode )
 	if(not shareCode)then return end
 
-    local shareTitle = "快来湖南麻将"
+    local shareTitle = "么么湖南麻将"
     local sharedesc = "我分享了一个回放码"..shareCode.."，一起来看看吧"
 
-    local weburl = "http://a.mlinks.cc/AaNG?".."roomId=".."_"..shareCode
+    local weburl = "https://acz5fi.mlinks.cc/AcqJ?".."roomId=".."_"..shareCode
     local img = ""
     local args = {title=shareTitle,desc=sharedesc,webUrl=weburl,imageUrl=img}
 	LuaCallPlatformFun.share(args)

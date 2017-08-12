@@ -85,7 +85,7 @@ function CreateRoomUITwo:onCreate(clubData)
 
     local card_des = helper.findNodeByName(self.resourceNode_,"card_des")
     card_des:setVisible(not Is_App_Store)
-    card_des:setVisible(false)
+    --card_des:setVisible(false)
     dataMgr:setNeedJewel(nil)
     dataMgr:setClubData(nil)
 
@@ -377,7 +377,7 @@ function CreateRoomUITwo:onCreateHandler(event)
 
     if not self.m_clubData and tonumber(UserData.userInfo.surplusGameCard) < dataMgr:getUseNum() then
         if(not Is_App_Store)then
-            UIMgr:showTips("房卡不足，创建失败\n\n购买房卡：memeyouxi【微信公众号】")
+            UIMgr:showTips("房卡不足，创建失败\n\n购买房卡：请联系代理！")
         else
             UIMgr:showTips("房卡不足，创建失败")
         end

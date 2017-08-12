@@ -20,7 +20,7 @@ function MahjongScene:onCreate()
 end
 
 function MahjongScene:initScene()
-    print("111111111:",UserData:getCurBgType().."/MahjongTile.plist",UserData:getCurBgType().."/MahjongTile.png")
+    --print("111111111:",UserData:getCurBgType().."/MahjongTile.plist",UserData:getCurBgType().."/MahjongTile.png")
     display.loadSpriteFrames(UserData:getCurBgType().."/MahjongTile.plist", UserData:getCurBgType().."/MahjongTile.png")
     -- 添加背景图层
     self.MahjongBgLayer = MahjongBgLayer.new()

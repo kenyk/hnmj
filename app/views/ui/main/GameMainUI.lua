@@ -488,33 +488,24 @@ function GameMainUI:onClub()
 end
 
 function GameMainUI:onPiLiangCreate()
-    -- UIMgr:openUI(consts.UI.ClubInputCreate)
     UIMgr:openUI(consts.UI.ClubCreateMany)
 end
 
 function GameMainUI:onHongbao(  )
-    -- if(Is_App_Store or not Is_Open_Hongbao)then return end
-    -- UIMgr:openUI(consts.UI.HongbaoUI)
 end
 
 function GameMainUI:onMotan()
-    -- if(Is_App_Store or not is_Motan)then return end
-    -- UIMgr:openUI(consts.UI.MotanUI)
 end
 
---跑得快推广
 function GameMainUI:onPdkClick()
-    --cc.Application:getInstance():openURL("https://wap.kuailai88.com/share/download/appId/30/appCode/klpdk.html")
+
 end
 
---湖北麻将推广
 function GameMainUI:onHbmjClick()
-    --cc.Application:getInstance():openURL("https://wap.kuailai88.com/share/download/appId/3/appCode/klhbmj.html")
 end
 
---跑胡子推广
 function GameMainUI:onPhzClick()
-   --cc.Application:getInstance():openURL("https://wap.kuailai88.com/share/download/appId/40/")
+
 end
 
 function GameMainUI:proListHandler(msg)
