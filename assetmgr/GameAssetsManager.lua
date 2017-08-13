@@ -12,11 +12,11 @@ GameAssetsManager._pathToSave          = ""
 
  GameAssetsManager.urlName = "https://localhost:8080/clientUpdate/"
 if CC_PACKET_VERSION == 1 then
-    GameAssetsManager.urlName = "https://www.gamemomo.cn/Uploads/Download/Assets/hnmj/clientUpdate/"     --内网更新地址
+    GameAssetsManager.urlName = "https://wap.juyun66.com/Uploads/Download/Assets/hnmj/clientUpdate/"     --内网更新地址
 elseif CC_PACKET_VERSION == 2 then
-    GameAssetsManager.urlName = "https://www.gamemomo.cn/Uploads/Download/Assets/hnmj/clientUpdate/"     --外网审核包更新地址
+    GameAssetsManager.urlName = "https://wap.juyun66.com/Uploads/Download/Assets/hnmj/clientUpdate/"     --外网审核包更新地址
 elseif CC_PACKET_VERSION == 3 then
-    GameAssetsManager.urlName = "https://www.gamemomo.cn/Uploads/Download/Assets/hnmj/clientUpdateBeta/" --外网发布包更新地址
+    GameAssetsManager.urlName = "https://wap.juyun66.com/Uploads/Download/Assets/hnmj/clientUpdateBeta/" --外网发布包更新地址
 end
 
 GameAssetsManager.fileName = "/res.zip"
