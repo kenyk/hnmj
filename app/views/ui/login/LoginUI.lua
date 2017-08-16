@@ -35,9 +35,9 @@ function LoginUI:onCreate()
     -- test
     self.cbNW = helper.findNodeByName(self.resourceNode_, "cbNW")
     self:onNetChange()
-    if(not Is_App_Store)then
-        BIHttpClient:postBIeventInfo(consts.BIeventType.page,consts.BIcurrentPath.loginPage)
-    end
+    -- if(not Is_App_Store)then
+    --     BIHttpClient:postBIeventInfo(consts.BIeventType.page,consts.BIcurrentPath.loginPage)
+    -- end
 
 
     self.txt_version = ccui.Text:create("1.1.0", "sfzht.ttf", 35):addTo(self.resourceNode_, 10):setAnchorPoint(cc.p(0, 1))
@@ -72,7 +72,7 @@ function LoginUI:onNetChange()
     if CC_PACKET_VERSION == 1 then
         if self.cbNW:isSelected() then
             ---内网
-            consts.BIHttpHost = consts.BIHttpHost_lan
+           -- consts.BIHttpHost = consts.BIHttpHost_lan
             consts.HttpHost = "121.201.48.188:8192" 
             consts.GameHttpHost = "121.201.48.188:8001" --内
         else
@@ -84,14 +84,14 @@ function LoginUI:onNetChange()
          if consts.App.APP_PLATFORM ~= cc.PLATFORM_OS_WINDOWS then
              consts.HttpHost = "api.kuailai88.com"
              consts.GameHttpHost = "dlklmj.kuailai88.com:8001"
-             consts.BIHttpHost = consts.BIHttpHost_wan
+             -- consts.BIHttpHost = consts.BIHttpHost_wan
          end
      elseif CC_PACKET_VERSION == 3 then
          --发布包使用
          if consts.App.APP_PLATFORM ~= cc.PLATFORM_OS_WINDOWS then
              consts.HttpHost = "119.29.64.46:40001"
              consts.GameHttpHost = "119.29.64.46:8001"
-             consts.BIHttpHost = consts.BIHttpHost_wan
+             -- consts.BIHttpHost = consts.BIHttpHost_wan
          end
      end
 
@@ -137,7 +137,7 @@ function LoginUI:loginSuccess()
     end
     LocalData.data.thirdLoginData = self.thirdLoginData
     LocalData:save()
-    BIHttpClient:postBIeventInfo(consts.BIeventType.click,consts.BIcurrentPath.loginSuccessClick)
+    --BIHttpClient:postBIeventInfo(consts.BIeventType.click,consts.BIcurrentPath.loginSuccessClick)
     self:queryStaus()
 end  
 

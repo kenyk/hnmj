@@ -29,7 +29,7 @@ CC_DESIGN_RESOLUTION = {
 RELEASE_PRINT = true
 
 -- testing update   open true close false  更新检测开关
-CC_UPDATE_SET = false
+CC_UPDATE_SET = true
 
 -- CC_VERSION = nil  --游戏版本号
 

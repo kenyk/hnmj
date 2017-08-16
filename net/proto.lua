@@ -506,7 +506,9 @@ game_hu_card 3009 {
                                     #baoting 报听 menqing 门清 nolaizihu无王大胡
   hu_info 5 : string                # {tianhu:数量,dihu:数量 } json
   huType  6 : integer               #胡的类型 （1自摸胡， 2 点炮， 3，接炮 4,大胡点炮 , 5大胡接炮） 
-  point 7 : integer                                                         
+  point 7 : integer                 
+  huCard2 8 : integer                 #胡的牌（衡阳麻将会用到）                                        
+  gangType 9 : string              # {anGang:1,jieGang:1,fangGang:1,mingGang:1} json   # 暗杠数    接杠数    放杠数     明杠数                                        
 }
 
 .ningxiang_player_balance_info{

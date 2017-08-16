@@ -44,11 +44,11 @@ local function getBIeventInfo(BIeventType,BIcurrentPath)
 end
 
 function BIHttpClient:postBIeventInfo(BIeventType,BIcurrentPath)
-    local url = "http://" .. consts.BIHttpHost ..consts.BIHttpUrl.BIeventInfo
-    local param = getBIDefaultParams()
-    param.eventInfo = json.encode(getBIeventInfo(BIeventType,BIcurrentPath))
-    local paramstr=HttpClient.paramsToUrl(param)
-    BIHttpClient:asyncPostRequest(url,nil,paramstr,nil)
+    -- local url = "http://" .. consts.BIHttpHost ..consts.BIHttpUrl.BIeventInfo
+    -- local param = getBIDefaultParams()
+    -- param.eventInfo = json.encode(getBIeventInfo(BIeventType,BIcurrentPath))
+    -- local paramstr=HttpClient.paramsToUrl(param)
+    -- BIHttpClient:asyncPostRequest(url,nil,paramstr,nil)
 end
 
 function BIHttpClient:asyncPostRequest(url,callback,param,failCallBack)

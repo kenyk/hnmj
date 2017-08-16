@@ -205,7 +205,7 @@ function GameMainUI:onCreate()
             image:addTo(self.mainIcon)
          end
     end
-    BIHttpClient:postBIeventInfo(consts.BIeventType.page,consts.BIcurrentPath.indexPage)
+    --BIHttpClient:postBIeventInfo(consts.BIeventType.page,consts.BIcurrentPath.indexPage)
 
     self.mainMsgBtn:setVisible(not Is_App_Store)
 
@@ -400,7 +400,8 @@ function GameMainUI:onMessage()
     function(entity,response,statusCode)
         if response and (response.status == 1 or response.errCode == 0) then
             if(response.data and response.data.list)then
-                local helpUrl = response.data.list[1].url
+                --local helpUrl = response.data.list[1].url
+                local helpUrl = "uires/uiSetting/message.html"
                 print("helpUrl, ", helpUrl)
                 -- if(helpUrl)then UIMgr:openUI(consts.UI.UserAgreementUI,nil,nil,{url = helpUrl,type = 2})end
                 if(helpUrl)then NotifyMgr:push(consts.Notify.UPDATE_MAIL, {url = helpUrl,type = 2})end
