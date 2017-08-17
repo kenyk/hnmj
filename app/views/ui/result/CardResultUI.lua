@@ -65,23 +65,23 @@ function CardResultUI:onCreate()
     gameInfo:setAnchorPoint(cc.p(0,0))
     gameInfo:addTo(self.Image_3, 0)
 
-    print("上传ping", UserData.canUploadPing)
-    if UserData.canUploadPing then
-        local log = ""
-        for i, v in ipairs(UserData.averPingTbl) do
-            log = log..v
-            if i ~= #UserData.averPingTbl then
-                log = log.."-"
-            end
-        end
+    -- print("上传ping", UserData.canUploadPing)
+    -- if UserData.canUploadPing then
+    --     local log = ""
+    --     for i, v in ipairs(UserData.averPingTbl) do
+    --         log = log..v
+    --         if i ~= #UserData.averPingTbl then
+    --             log = log.."-"
+    --         end
+    --     end
 
-        HttpServiers:pingValue({pingLog = log}, function(data, response, statusCode)
-                if data then
-                    UserData.canUploadPing = data.continue
-                end
-            end)
-        UserData.averPingTbl = {}
-    end
+    --     HttpServiers:pingValue({pingLog = log}, function(data, response, statusCode)
+    --             if data then
+    --                 UserData.canUploadPing = data.continue
+    --             end
+    --         end)
+    --     UserData.averPingTbl = {}
+    -- end
 end
 
 --继续开始

@@ -104,24 +104,13 @@ consts.GameTypeName = {
 --能使用听牌提示的麻将类型 ps：对应GameTypeName，改的时候顺便改下
 consts.TingPaiGameType = {true,false,true,true,false,true}
 
--- consts.PlayScene = "testPlayScene"  --LXL
--- consts.PlayScene = "MahjongScene"   --江宝添
-
 consts.DefauleGameType = consts.GameType.zhuanzhuan
 
----内网
- -- consts.HttpHost = "10.17.174.171:8192"
- -- consts.GameHttpHost = "10.17.174.116:8001"
-
---consts.BIHttpHost_lan = "10.17.174.171:8081"
 consts.BIHttpHost_lan = "121.201.48.188:8192"
---consts.BIHttpHost_wan = "bidata.kuailai88.com"
 
 ---外网
 consts.HttpHost = "121.201.48.188:8192"
---consts.HttpHost = "192.168.1.103:20002"
 consts.GameHttpHost = "121.201.48.188:8001"
---consts.BIHttpHost = consts.BIHttpHost_lan
 
 consts.HttpUrl = {
     thirdPartyLogin =  "/user/thirdPartyLogin",
@@ -154,11 +143,11 @@ consts.GameHttpUrl = {
 }
 
 consts.BIHttpUrl = {
-    BIeventInfo = "/klmj/eventInfo"
+    BIeventInfo = "/mememj/eventInfo"
 }
 
 consts.appId = 1
-consts.appCode = "klmj"
+consts.appCode = "mememj"
 --客户端来源标志
 consts.clientFrom = {
     ios = 1,
@@ -179,7 +168,7 @@ consts.loginFrom = {
     weobo = 20,
 }
 
-consts.clientVer = "0.1"
+consts.clientVer = "1.0.0"
 
 consts.chatMsgArray = {
         "不好意思，我有事要先走一步了",
@@ -246,14 +235,6 @@ consts.GCloudVoice = {
 
 consts.wechatAppId =  "wxf0862d65306b025a"
 consts.roomCreateMsg = {}
--- consts.roomCreateMsg.tab_1 = 
--- {
---     {"局数",{1," 8局","createC8","(房卡x1)"},{1,"16局","createC16","(房卡x2)"}},
---     {"人数",{1,"4人局","createP4"},{1,"3人局","createP3"},{1,"2人局","createP2"}},
---     {"玩法",{1,"点炮胡","createWin1"},{1,"自摸胡","createWin2"},{2,"抢杠胡","createWin3"}},
---     {"",{2,"庄闲算分","createCon1"},{2,"可胡七对","createCon2"},{2,"红中癞子","createCon3"}},
---     {"抓鸟",{1,"抓2鸟","createPick2"},{1,"抓4鸟","createPick4"},{1,"抓6鸟","createPick6"},{2,"鸟2分","createCoin2"}}
--- }
 
 consts.roomCreateMsg.tab_1 = 
 {

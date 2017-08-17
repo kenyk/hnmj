@@ -218,8 +218,6 @@ function LuaCallPlatformFun.payVerifyCallBack(params)
 	end
 end
 
-
--------------------------------------------------klmj----------------------------------------
 --得到手机IMIE
 function LuaCallPlatformFun.getPhoneIMEI()
 	if platform == "android" then

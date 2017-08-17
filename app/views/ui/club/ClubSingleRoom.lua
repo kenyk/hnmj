@@ -84,17 +84,6 @@ end
 function ClubSingleRoom:onInvite()
 	local shareTitle = ""
     local sharedesc = ""
-    -- if UserData.table_config.rule.jewel then
-    --     shareTitle = "俱乐部建房("..UserData.table_config.rule.jewel.."钻)<"..
-    --                       UserData.table_config.player_count .. "人"..
-    --                       consts.GameTypeName[UserData.curMahjongType]..">"
-        
-    --     sharedesc = "房号["..UserData.roomId.."]"..UserData:getTotalCount().."局"..UserData:getShareDesc().."\n[点击加入房间]"
-    -- else
-        
-    --     shareTitle = UserData.table_config.player_count .. "人" .. consts.GameTypeName[UserData.curMahjongType] .. ",".."房号:"..UserData.roomId.."("..UserData:getTotalCount().."局)"
-    --     sharedesc = UserData:getShareDesc().."\n[点击加入房间]"
-    -- end
     local ret = string.split(self.data.progress, ":")
     local roomInfo = json.decode(self.data.data)
     shareTitle = "【俱乐部比赛专房】 "..self.data.player_num .. "人" .. consts.GameTypeName[roomInfo.type] .. ",".."房号:"..self.data.room_id.."("..ret[2].."局)"
@@ -104,12 +93,6 @@ function ClubSingleRoom:onInvite()
 
     local weburl = "https://acz5fi.mlinks.cc/AcqJ?".."roomId="..self.data.room_id
     local img = ""
-    -- if UserData.userInfo and UserData.userInfo.shareList and UserData.userInfo.shareList.roomShare then
-    --     img = UserData.userInfo.shareList.roomShare.img
-    --     if UserData.userInfo.shareList.roomShare.link and #UserData.userInfo.shareList.roomShare.link>1 then
-    --         weburl = UserData.userInfo.shareList.roomShare.link.."roomId="..self.data.room_id
-    --     end
-    -- end
     local args = {title=shareTitle,desc=sharedesc,webUrl=weburl,imageUrl=img}
 	LuaCallPlatformFun.share(args)
 end

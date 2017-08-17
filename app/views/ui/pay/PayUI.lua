@@ -120,7 +120,7 @@ function PayUI:onPayClick(obj)
                 local unBase64Str = mime.unb64(response.data.parameter)  
                 print("支付宝参数解码：",unBase64Str)
                 --拉起支付宝支付
-                local args = {orderInfo = unBase64Str,appScheme = "dalun-klmj"}
+                local args = {orderInfo = unBase64Str,appScheme = "meme-hnmj"}
                 LuaCallPlatformFun.aliPay(args)
 
             elseif(self.m_payLs[tag].pid == 3)then--微信

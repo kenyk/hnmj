@@ -202,12 +202,6 @@ function MahjongGameWaitLayer:onBtnInviteFriendCLick()
 
     local weburl = "https://acz5fi.mlinks.cc/AcqJ?".."roomId="..UserData.roomId
     local img = ""
-    -- if UserData.userInfo and UserData.userInfo.shareList and UserData.userInfo.shareList.roomShare then
-    --     img = UserData.userInfo.shareList.roomShare.img
-    --     if UserData.userInfo.shareList.roomShare.link and #UserData.userInfo.shareList.roomShare.link>1 then
-    --         weburl = UserData.userInfo.shareList.roomShare.link.."roomId="..UserData.roomId
-    --     end
-    -- end
     local args = {title=shareTitle,desc=sharedesc,webUrl=weburl,imageUrl=img}
 	LuaCallPlatformFun.share(args)
 end

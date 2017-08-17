@@ -61,7 +61,7 @@ end
 
 function LoginUI:onExit()
     LoginUI.super.onExit(self)
-     --add by zengbingrong
+
     if(not Is_App_Store)then
         NotifyMgr:unregWithObj(self)
     end
@@ -273,19 +273,22 @@ function LoginUI:onBtnEnter()
 end
 
 function LoginUI:onLow(event)
-    print("用户协议")
-    HttpServiers:queryArticleList({
-        appId = consts.appId,
-        appCode = consts.appCode,
-        clientFrom = consts.clientFrom[device.platform],
-        artCat = "agreementNotice",
-    },
-    function(entity,response,statusCode)
-        local helpUrl = "uires/uiSetting/user_agreement.html" --changed by liujialin
-        NotifyMgr:push(consts.Notify.UPDATE_MAIL, {url = helpUrl, type = 1})
-    end
-    )
+    -- print("用户协议")
+    -- HttpServiers:queryArticleList({
+    --     appId = consts.appId,
+    --     appCode = consts.appCode,
+    --     clientFrom = consts.clientFrom[device.platform],
+    --     artCat = "agreementNotice",
+    -- },
+    -- function(entity,response,statusCode)
+    --     local helpUrl = "uires/uiSetting/user_agreement.html" --changed by liujialin
+    --     NotifyMgr:push(consts.Notify.UPDATE_MAIL, {url = helpUrl, type = 1})
+    -- end
+    -- )
     UIMgr:openUI(consts.UI.UserAgreementUI,nil,nil)
+    
+    local helpUrl = "uires/uiSetting/user_agreement.html" --changed by liujialin
+    NotifyMgr:push(consts.Notify.UPDATE_MAIL, {url = helpUrl, type = 1})
 end
 
 return LoginUI
