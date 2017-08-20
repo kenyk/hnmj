@@ -76,7 +76,7 @@ function RecordMainItemUI:setItemData(item)
         local xx = self.record_main_item_num:getContentSize().width+85
         -- self.record_tip_10:setPosition(cc.p(xx,147))
         -- self.record_main_item_roomid:setString(item.room_id.."号房间")
-        self.record_main_item_time:setString(item.end_time)
+        self.record_main_item_time:setString(os.date("%m-%d %H:%M",item.end_time))
         local playcount = self:getChairCount(item)
         local iw = math.ceil(self.insizeWidth/playcount)
         local offset_x = iw/2;
