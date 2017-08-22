@@ -143,11 +143,11 @@ consts.GameHttpUrl = {
 }
 
 consts.BIHttpUrl = {
-    BIeventInfo = "/mememj/eventInfo"
+    BIeventInfo = "/hnmj/eventInfo"
 }
 
 consts.appId = 1
-consts.appCode = "mememj"
+consts.appCode = "hnmj"
 --客户端来源标志
 consts.clientFrom = {
     ios = 1,

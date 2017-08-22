@@ -94,7 +94,8 @@ function createData:getGameRule(tab)
     if tab == 4 then
         for k,box in ipairs(boxlist[5]) do
             if box:isSelected() then
-                data.find_bird = k + 1
+                --data.find_bird = k + 1
+                data.find_bird = k*2
             end
         end
     elseif 1 == tab then
