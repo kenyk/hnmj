@@ -11,7 +11,7 @@ DismissRoomApplyDialogLayerSec.RESOURCE_FILENAME = "uiDismiss/Dismiss_Vote_Layer
 DismissRoomApplyDialogLayerSec.RESOURCE_MODELNAME = "app.views.ui.dismiss.DismissRoomModel"
 
 local playerCount = UserData.table_config.player_count 
-local playerPosX = {215, 395, 575, 755}
+local playerPosX = {215-100, 395-100, 575-100, 755-100}
 
 function DismissRoomApplyDialogLayerSec:onCreate(data)
     self.playerName = helper.findNodeByName(self.resourceNode_, "lbl_apply_player_name")
