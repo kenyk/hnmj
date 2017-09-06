@@ -114,5 +114,13 @@ end
 function HttpServiers:queryRedpackGetMoney(params,callback)
    return HttpClient:asyncGet(consts.HttpUrl.redpackGetMoney, params,callback)
 end
+--查询是否代理
+function HttpServiers:queryIsAgent(params,callback)
+   return HttpClient:asyncGet(consts.HttpUrl.queryIsAgent, params,callback)
+end
+--房卡转让
+function HttpServiers:cardGive(params,callback)
+   return HttpClient:asyncGet(consts.HttpUrl.exchangeCards, params,callback)
+end
 
 return HttpServiers

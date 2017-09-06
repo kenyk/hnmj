@@ -18,8 +18,6 @@ consts.Point = {
     CenterPosition = cc.p(consts.Size.width/2, consts.Size.height/2)
 }
 
-
-
 consts.App = {
     APP_FILE_PATH = cc.FileUtils:getInstance():getWritablePath(), --文件系统路径,
     APP_PLATFORM = cc.Application:getInstance():getTargetPlatform() --运行平台
@@ -81,6 +79,7 @@ consts.UI = {
     ClubRankView = "app.views.ui.club.ClubRankView",
     DismissRoomDialog = "app.views.ui.dismiss.DismissRoomApplyDialogLayerSec",
     PlayerVoteStatusUI = "app.views.ui.dismiss.PlayerVoteStatusUI",
+    GiveCardUI = "app.views.ui.givecard.GiveCardUI",
 }
 
 consts.GameType = {
@@ -132,7 +131,9 @@ consts.HttpUrl = {
     redpackUserLog = "/Redpackage/getUserLog",
     redpackFetch = "/Redpackage/fetchRedpackage",
     redpackBindAcc = "/Redpackage/bindAccount",
-    redpackGetMoney = "/Redpackage/getMoneyByUsers"
+    redpackGetMoney = "/Redpackage/getMoneyByUsers",
+    queryIsAgent = "/GameService/isAgent",
+    exchangeCards = "/GameService/ExchangeCards"
 }
 
 consts.GameHttpUrl = {

@@ -89,9 +89,10 @@ function LoginUI:onNetChange()
      elseif CC_PACKET_VERSION == 3 then
          --发布包使用
          if consts.App.APP_PLATFORM ~= cc.PLATFORM_OS_WINDOWS then
-             consts.HttpHost = "119.29.64.46:40001"
-             consts.GameHttpHost = "119.29.64.46:8001"
-             -- consts.BIHttpHost = consts.BIHttpHost_wan
+            consts.HttpHost = "119.29.64.46:40001"
+            consts.GameHttpHost = "123.207.74.135:8001"
+            --consts.GameHttpHost = "119.29.64.46:8001"
+            -- consts.BIHttpHost = consts.BIHttpHost_wan
          end
      end
 

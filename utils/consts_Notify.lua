@@ -57,4 +57,6 @@ consts.Notify = {
     --切后台
     APP_ENTER_BACKGROUND = "APP_ENTER_BACKGROUND",
     PILIANGCREATE = "PILIANGCREATE",
+    --刷新房卡数量
+    UPDATE_CARD_NUM = "UPDATE_CARD_NUM",
 }

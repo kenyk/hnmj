@@ -153,6 +153,7 @@ function GameMainUI:onCreate()
     self.mainActivityBtn = helper.findNodeByName(self.resourceNode_,"mainActivityBtn")
     self.mainRecirdBtn = helper.findNodeByName(self.resourceNode_,"mainRecirdBtn")
     self.mainPiLiang = helper.findNodeByName(self.resourceNode_,"mainPiLiang")
+    self.mainGiveCardBtn = helper.findNodeByName(self.resourceNode_,"mainGiveBtn")
     self.mainBuyBtn:setPressedActionEnabled(true)
     self.mainMsgBtn:setPressedActionEnabled(true)
     self.mainHelpBtn:setPressedActionEnabled(true)
@@ -161,6 +162,8 @@ function GameMainUI:onCreate()
     self.mainShareBtn:setPressedActionEnabled(true)
     self.mainActivityBtn:setPressedActionEnabled(true)
     self.mainRecirdBtn:setPressedActionEnabled(true)
+    self.mainGiveCardBtn:setPressedActionEnabled(true)
+    --self.mainGiveCardBtn:setVisible(false)
     self.mainRCLabel = helper.findNodeByName(self.resourceNode_,"mainRCLabel")
     self.mainIcon = helper.findNodeByName(self.resourceNode_,"mainIcon")
     self.Panel_motan = helper.findNodeByName(self.resourceNode_,"Panel_motan")
@@ -231,6 +234,12 @@ function GameMainUI:onCreate()
     if(not Is_App_Store)then
         LuaCallPlatformFun.openMicPhone()
     end
+
+    NotifyMgr:reg(consts.Notify.UPDATE_CARD_NUM, self.updateGameCard, self)
+end
+
+function GameMainUI:updateGameCard()
+    helper.updateGameCard()--刷新房卡
 end
 
 function GameMainUI:onEnter()
@@ -254,6 +263,30 @@ function GameMainUI:onEnter()
     if(Is_App_Store)then return end
     performWithDelay(self, handler(self,self.firstSendCard),.5)
     self:checkMail()
+    self:queryIsAgent()
+end
+
+function GameMainUI:queryIsAgent()
+    -- body
+    HttpServiers:queryIsAgent({
+        userId = UserData.uid
+    },
+    function(entity,response,statusCode)
+
+        if response and (response.status == 1 or response.errCode == 0) then
+            --UIMgr:showTips("问题已成功提交，谢谢您宝贵的建议!")
+            if response.data.agentType == "1" or response.data.agentType == "2" then
+                self.mainGiveCardBtn:setVisible(true)
+                print("self.mainGiveCardBtn:setVisible(true)")
+            else
+                self.mainGiveCardBtn:setVisible(false)
+                print("self.mainGiveCardBtn:setVisible(false)")
+            end
+        else
+            --UIMgr:showTips("提交失败")
+            print("错误码：",response.errCode,"错误信息：",response.error)
+        end
+    end)
 end
 
 function GameMainUI:checkMail()
@@ -421,6 +454,10 @@ function GameMainUI:onActivity()
     UIMgr:openUI(consts.UI.FankuiUI)
 end
 
+function GameMainUI:onGiveCardClick()
+    UIMgr:openUI(consts.UI.GiveCardUI)
+end
+
 function GameMainUI:onRecird()
     -- body
     UIMgr:openUI(consts.UI.RecordMainUI)
@@ -433,7 +470,6 @@ function GameMainUI:onClub()
         self:close()
     end
     -- self:close()
-    
 end
 
 function GameMainUI:onPiLiangCreate()
