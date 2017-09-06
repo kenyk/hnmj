@@ -66,6 +66,7 @@ function GProtocolModel:reConnectSetGameData(msg)
         	UserData:setGameStatus(UserData.GAME_STATUS.waiting)
         else
         	UserData:setGameStatus(UserData.GAME_STATUS.nextWaiting)
+        	self:send("room_get_ready")
         end
 	end
 	if UserData.isInGame then
