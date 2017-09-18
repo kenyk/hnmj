@@ -163,7 +163,7 @@ function GameMainUI:onCreate()
     self.mainActivityBtn:setPressedActionEnabled(true)
     self.mainRecirdBtn:setPressedActionEnabled(true)
     self.mainGiveCardBtn:setPressedActionEnabled(true)
-    --self.mainGiveCardBtn:setVisible(false)
+    self.mainGiveCardBtn:setVisible(false)
     self.mainRCLabel = helper.findNodeByName(self.resourceNode_,"mainRCLabel")
     self.mainIcon = helper.findNodeByName(self.resourceNode_,"mainIcon")
     self.Panel_motan = helper.findNodeByName(self.resourceNode_,"Panel_motan")
@@ -258,6 +258,7 @@ function GameMainUI:onEnter()
             self:queryRoom()
         end
     end
+    self.mainGiveCardBtn:setVisible(false)
     self.mainPiLiang:setVisible(false)
     
     if(Is_App_Store)then return end

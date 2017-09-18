@@ -1,4 +1,4 @@
--- region *.lua
+﻿-- region *.lua
 -- Date
 -- 此文件由[BabeLua]插件自动生成
 
@@ -168,18 +168,24 @@ function SummaryResultUI:updateWinnerFlag(maxPoint)
 
     local winner = UserData.game_balance_result.win
     for i = 1, #entity do
-
         self.uiList[i].sFlagWinner:setVisible(entity[i].uid == winner)
-
     end
 
     --分数都为0，没有大赢家
-   if(maxPoint == 0) then
+    if(maxPoint == 0) then
        for i = 1, #entity do
            self.uiList[i].sFlagWinner:setVisible(false)
        end
        return
-   end
+    end
+    --分数都为最大的，设为大赢家
+    for i=1,#entity do
+        if entity[i].uid ~= winner then --上面已经设置了
+            if entity[i].point == maxPoint then
+                self.uiList[i].sFlagWinner:setVisible(true)
+            end
+        end
+    end
 
    for k,v in ipairs(maxPointIndexList) do
        self.uiList[v].sFlagWinner:setVisible(true)
