@@ -123,4 +123,13 @@ function HttpServiers:cardGive(params,callback)
    return HttpClient:asyncGet(consts.HttpUrl.exchangeCards, params,callback)
 end
 
+--设置激活码
+function HttpServiers:setActivationCode(params,callback)
+   return HttpClient:asyncGet(consts.HttpUrl.setActivationCode, params,callback)
+end
+
+function HttpServiers:setWinnerLog(params,callback)
+   return HttpClient:asyncGet(consts.HttpUrl.setWinnerLog, params,callback)
+end
+
 return HttpServiers

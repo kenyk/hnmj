@@ -15,6 +15,7 @@ function SummaryResultItemReportUI:onCreate()
         self.txPlayerName = helper.findNodeByName(self.resourceNode_,"txPlayerName");
         self.txPlayerAccount = helper.findNodeByName(self.resourceNode_,"txPlayerAccount");
         self.sFlagWinner = helper.findNodeByName(self.resourceNode_,"sFlagWinner");
+        self.sFlagCaishen = helper.findNodeByName(self.resourceNode_,"sFlagCaishen");
         self.sFlagPaoShou = helper.findNodeByName(self.resourceNode_,"sFlagPaoShou"):setVisible(false);
         self.txScores = helper.findNodeByName(self.resourceNode_,"txScores");
         self.sFlagRoomHost = helper.findNodeByName(self.resourceNode_, "sFlagRoomHost")

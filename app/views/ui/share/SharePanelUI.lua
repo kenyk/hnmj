@@ -19,7 +19,12 @@ function SharePanelUI:onCreate()
     self.weixincircleBtn = helper.findNodeByName(self.resourceNode_,"btn_share_weixincircle")
     self.weixincircleBtn:setPressedActionEnabled(true)
     local weburl = "https://acz5fi.mlinks.cc/AcqJ?".."roomId=".."_"..1    
-    self.args = {title="一起来玩么么湖南麻将吧！",desc="邀请您加入【么么湖南麻将】，点击该链接后，进入麻将下载页面，进入下载流程！",webUrl=weburl,imageUrl=""}
+    if UserData.isActivation == true then
+        self.args = {title="一起来玩么么湖南麻将吧！",desc="邀请您加入【么么湖南麻将】，下载完后，输入激活码:"..UserData.uid.."进行激活游戏!",webUrl=weburl,imageUrl=""}
+    else
+        self.args = {title="一起来玩么么湖南麻将吧！",desc="邀请您加入【么么湖南麻将】，下载完后，输入激活码:"..UserData.userInfo.activationCode.."进行激活游戏!",webUrl=weburl,imageUrl=""}
+        -- self.args = {title="一起来玩么么湖南麻将吧！",desc="邀请您加入【么么湖南麻将】，点击该链接，进入下载页面，下载游戏！",webUrl=weburl,imageUrl=""}
+    end
    
     --self.args = {title="我在玩么么湖南麻将，一起来玩吧！",desc="邀请您加入【么么湖南麻将】，点击该链接后，进入麻将下载页面，进入下载流程！",webUrl="https://fir.im/3cv1",imageUrl=""}
     --print("----share panel---",self.args.title,self.args.desc,self.args.webUrl,self.args.imageUrl)

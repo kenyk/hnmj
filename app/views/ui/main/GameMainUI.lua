@@ -265,6 +265,13 @@ function GameMainUI:onEnter()
     performWithDelay(self, handler(self,self.firstSendCard),.5)
     self:checkMail()
     self:queryIsAgent()
+
+    if  tonumber(UserData.userInfo.activationCode) == 0 then
+        --弹窗
+        --print("UIMgr:openUI(consts.UI.ActivateUI)")
+        --UIMgr:openUI(consts.UI.ActivateUI)
+        performWithDelay(self, handler(self,self.showActivationBox),.5)
+    end
 end
 
 function GameMainUI:queryIsAgent()
@@ -279,7 +286,13 @@ function GameMainUI:queryIsAgent()
             if response.data.agentType == "1" or response.data.agentType == "2" then
                 self.mainGiveCardBtn:setVisible(true)
                 print("self.mainGiveCardBtn:setVisible(true)")
+                UserData.isActivation = true
             else
+                if response.data.agentType == "3" then --3级推广员
+                    UserData.isActivation = true
+                else
+                    UserData.isActivation = false
+                end
                 self.mainGiveCardBtn:setVisible(false)
                 print("self.mainGiveCardBtn:setVisible(false)")
             end
@@ -315,6 +328,11 @@ function GameMainUI:firstSendCard(  )
         UIMgr:showTips("首次登录赠送房卡"..UserData.userInfo.surplusGameCard.."张")
         UserData.userInfo.isNew = 0
     end
+end
+
+--输入激活码
+function GameMainUI:showActivationBox(  )
+    UIMgr:openUI(consts.UI.ActivationUI)
 end
 
 function GameMainUI:queryRoom()
@@ -359,7 +377,8 @@ function GameMainUI:onClickAvatar()
             ip = userInfo.ip,
             image_url = userInfo.avatar,
             uid = userInfo.userId,
-            gender = userInfo.gender
+            gender = userInfo.gender,
+            activationCode = userInfo.activationCode,
             })
     end
 end

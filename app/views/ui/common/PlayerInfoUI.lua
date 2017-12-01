@@ -15,6 +15,7 @@ function PlayerInfoUI:onCreate()
     self.txPlayerName = helper.findNodeByName(self.resourceNode_, "txPlayerName")
     self.txPlayerAccount = helper.findNodeByName(self.resourceNode_, "txPlayerAccount")
     self.txPlayerIP = helper.findNodeByName(self.resourceNode_, "txPlayerIP")
+    self.txPlayerActivationCode = helper.findNodeByName(self.resourceNode_, "txActivation")
 end
 
 function PlayerInfoUI:show(playerInfo)
@@ -41,6 +42,13 @@ function PlayerInfoUI:show(playerInfo)
         border:setScaleX(1.2)
         border:setScaleY(1.22)
         border:addTo(image)
+    end
+    
+    if tonumber(UserData.userInfo.activationCode) == 0 then
+        self.txPlayerActivationCode:setVisible(false)
+    else
+        self.txPlayerActivationCode:setString("激活码："..UserData.userInfo.activationCode)
+        self.txPlayerActivationCode:setVisible(true)
     end
 
     local picName = "uires/common/female.png"

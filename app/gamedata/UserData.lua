@@ -114,6 +114,9 @@ UserData.isAddClub = nil
 --登录弹红包UI
 UserData.loginOpenHB = false
 
+--是否可以作为激活码
+UserData.isActivation = false
+
 --清掉癞子和赖子皮信息
 function UserData:clearLaizipiAndLaizi()
     UserData.laiziCardId = nil

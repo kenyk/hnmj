@@ -80,6 +80,7 @@ consts.UI = {
     DismissRoomDialog = "app.views.ui.dismiss.DismissRoomApplyDialogLayerSec",
     PlayerVoteStatusUI = "app.views.ui.dismiss.PlayerVoteStatusUI",
     GiveCardUI = "app.views.ui.givecard.GiveCardUI",
+    ActivationUI = "app.views.ui.activation.ActivationUI",
 }
 
 consts.GameType = {
@@ -133,7 +134,9 @@ consts.HttpUrl = {
     redpackBindAcc = "/Redpackage/bindAccount",
     redpackGetMoney = "/Redpackage/getMoneyByUsers",
     queryIsAgent = "/GameService/isAgent",
-    exchangeCards = "/GameService/ExchangeCards"
+    exchangeCards = "/GameService/ExchangeCards",
+    setActivationCode = "/GameService/setActivationCode",
+    setWinnerLog = "/statistics/setWinnerLog"
 }
 
 consts.GameHttpUrl = {
