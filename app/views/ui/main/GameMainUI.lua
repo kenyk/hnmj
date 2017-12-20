@@ -154,6 +154,8 @@ function GameMainUI:onCreate()
     self.mainRecirdBtn = helper.findNodeByName(self.resourceNode_,"mainRecirdBtn")
     self.mainPiLiang = helper.findNodeByName(self.resourceNode_,"mainPiLiang")
     self.mainGiveCardBtn = helper.findNodeByName(self.resourceNode_,"mainGiveBtn")
+    self.mainApplyAgentBtn = helper.findNodeByName(self.resourceNode_,"mainApplyAgentBtn")
+    self.mainApplyAgentBtn:setPressedActionEnabled(true)
     self.mainBuyBtn:setPressedActionEnabled(true)
     self.mainMsgBtn:setPressedActionEnabled(true)
     self.mainHelpBtn:setPressedActionEnabled(true)
@@ -164,6 +166,7 @@ function GameMainUI:onCreate()
     self.mainRecirdBtn:setPressedActionEnabled(true)
     self.mainGiveCardBtn:setPressedActionEnabled(true)
     self.mainGiveCardBtn:setVisible(false)
+    self.mainApplyAgentBtn:setVisible(false)
     self.mainRCLabel = helper.findNodeByName(self.resourceNode_,"mainRCLabel")
     self.mainIcon = helper.findNodeByName(self.resourceNode_,"mainIcon")
     self.Panel_motan = helper.findNodeByName(self.resourceNode_,"Panel_motan")
@@ -260,7 +263,7 @@ function GameMainUI:onEnter()
     end
     self.mainGiveCardBtn:setVisible(false)
     self.mainPiLiang:setVisible(false)
-    
+    self.mainApplyAgentBtn:setVisible(false)
     if(Is_App_Store)then return end
     performWithDelay(self, handler(self,self.firstSendCard),.5)
     self:checkMail()
@@ -287,6 +290,8 @@ function GameMainUI:queryIsAgent()
                 self.mainGiveCardBtn:setVisible(true)
                 print("self.mainGiveCardBtn:setVisible(true)")
                 UserData.isActivation = true
+                --如果是代理则不加载“申请代理”出来
+                self.mainApplyAgentBtn:setVisible(false)
             else
                 if response.data.agentType == "3" then --3级推广员
                     UserData.isActivation = true
@@ -295,6 +300,7 @@ function GameMainUI:queryIsAgent()
                 end
                 self.mainGiveCardBtn:setVisible(false)
                 print("self.mainGiveCardBtn:setVisible(false)")
+                self.mainApplyAgentBtn:setVisible(true)
             end
         else
             --UIMgr:showTips("提交失败")
@@ -580,6 +586,13 @@ function GameMainUI:uiCloseDo()
     performWithDelay(self, handler(self,function ()
         UIMgr:closeUI(consts.UI.LoadingDialogUI)
     end),.2)
+end
+
+--申请代理
+function GameMainUI:onApplyAgent()
+    -- body
+    print("onApplyAgentClick")
+    UIMgr:openUI(consts.UI.AgentUI)
 end
 
 --更新房卡

@@ -81,6 +81,7 @@ consts.UI = {
     PlayerVoteStatusUI = "app.views.ui.dismiss.PlayerVoteStatusUI",
     GiveCardUI = "app.views.ui.givecard.GiveCardUI",
     ActivationUI = "app.views.ui.activation.ActivationUI",
+    AgentUI = "app.views.ui.agent.AgentUI",
 }
 
 consts.GameType = {
@@ -136,7 +137,8 @@ consts.HttpUrl = {
     queryIsAgent = "/GameService/isAgent",
     exchangeCards = "/GameService/ExchangeCards",
     setActivationCode = "/GameService/setActivationCode",
-    setWinnerLog = "/statistics/setWinnerLog"
+    setWinnerLog = "/statistics/setWinnerLog",
+    getAgentResult = "/ApplyAgent/add"
 }
 
 consts.GameHttpUrl = {

@@ -132,4 +132,9 @@ function HttpServiers:setWinnerLog(params,callback)
    return HttpClient:asyncGet(consts.HttpUrl.setWinnerLog, params,callback)
 end
 
+--申请代理
+function HttpServiers:applyAgentResult(params,callback)
+   return HttpClient:asyncGet(consts.HttpUrl.getAgentResult, params,callback)
+end
+
 return HttpServiers
